@@ -1,0 +1,183 @@
+@media (max-width: 1000px) {
+
+  .menu_head {
+  	display: none;
+  }
+  .logo_title {
+    font-size: 30px;
+}
+  .logo_img {
+    width: 5%;
+    margin: 10px 2px 2px 20px;
+}
+.block_head {
+    min-height: 1150px;
+    }
+.block_quest h5 {
+    font-size: 20px;
+}
+.block_quest h4 {
+    height: 80px;
+    font-size: 25px;
+    line-height: 25px;
+    }
+.icon {
+    font-size: 25px;
+    width: 20px;
+}
+.block_blur{
+  min-height: 150px;
+}
+.time_s {
+    font-size: 18px;
+    }
+.left_info {
+	padding: 2%;
+    width: 70%;
+    margin: 14% 14% 1% 14%;
+    backdrop-filter: blur(5px);
+   }
+.left_info h5 {
+    font-size: 30px;
+   }
+.left_info span {
+    font-size: 25px;
+}
+.button_action {
+    border-radius: 30px;
+    min-width: 300px;
+    padding: 15px;
+    font-size: 30px;
+
+}
+.left_info h4 {
+    font-size: 55px;
+    line-height: 50px;
+}
+.button_check {
+	font-size: 50px;
+    border-radius: 50px;
+}
+.input_search {
+    width: 350px;
+    font-size: 30px;
+}
+.right_list {
+	width: 100%;
+	margin-left: 6%;
+	margin-right: 0;
+	float: none;
+	height: 370px;
+	margin-bottom: 25px;
+}
+
+.block_quest {
+    width: 200px;
+    min-height: 340px;
+ }
+.left_slide {
+	position: absolute;
+    float: left;
+    width: 90%;
+    margin: 10px 10px 10px 5%;
+}
+#l, #r,#l_s, #r_s{
+	font-size: 70px;
+}
+#str_num {
+    font-size: 50px;
+    margin: -15px -15px 15px 25px;
+}
+.center_list {
+    width: 80%;
+}
+.section_li .button_action{
+	display: none;
+}
+.center_list h4 {
+    font-size: 25px;
+    margin: 120px 0 0 -150px;
+    transform: rotate(-90deg);
+}
+.center_list hr{
+	margin: -20px 0 0 -90px;
+	transform: rotate(-90deg);
+	border: 2px solid #F1B24A;
+}
+.li_quest li{
+  width: 100%;
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+.li_quest {
+  width: 90%;
+  font-size: 35px;
+  }
+  .icon_list{
+    font-size: 45px;
+  }
+  .plus_quest li {
+  width: 100%;
+  font-size: 35px;
+  margin-bottom: 20px;
+  }
+.left_gif {
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  }
+
+}
+
+@media (min-width: 1699px) {
+  /* стили для lg-устройств */
+  .button_check {
+  	font-size: 27px;
+  }
+  .menu_head {
+  	font-size: 20px;
+  }
+  .left_info span{
+  	font-size: 20px;
+  }
+  .plus_quest {
+  	font-size: 20px;
+  }
+  .user_soc{
+  	font-size: 20px;
+  }
+  .center_list {
+  	width: 85%;
+  }
+  footer {
+  	padding:1% 15%;
+
+  }
+
+}
+/*На всякий случай, ставку на них делать не будем, все-таки это остается веб-приложения с уклоном на мобильное*/
+@media (min-width: 1900px) {
+  /* стили для lg-устройств */
+  .button_check {
+  	font-size: 35px;
+  }
+  .menu_head {
+  	font-size: 25px;
+  }
+  .left_info span {
+  	font-size: 20px;
+  }
+
+}
+@media (min-width: 2100px) {
+  /* стили для lg-устройств */
+  .button_check {
+  	font-size: 45px;
+  }
+  .menu_head {
+  	font-size: 35px;
+  }
+  .left_info span {
+  	font-size: 25px;
+  }
+}

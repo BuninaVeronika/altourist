@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Тестируемая функция гироскопа</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="gyronorm.complete.min.js"></script>
+    <script defer src="questjs.js"></script>
+    <style type="text/css">
+  .container{
+    margin-top: 20px;
+  }
+
+  .tab-pane{
+    margin-top: 15px;
+  }
+
+  .page-header{
+    margin-top: 20px;
+  }
+
+  .input-group{
+    margin-bottom: 20px;
+
+  }
+
+  input[type=text],
+  textarea{
+    box-shadow: none;
+    -webkit-appearance:none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  #dm .input-group{
+    float: left;
+    padding-left: 10px;
+  }
+
+  #dm .input-group.first{
+    padding-left: 0px;
+  }
+
+  #dm .col-xs-12{
+    padding-left: 0;
+  }
+
+</style>
+  </head>
+
+<body onload="init_gn()">
+  <a href="../index.html">1 Удачная отправка фотографиии(реакция на фотографию)</a><br><br>
+  <p>Этот пример просто печатает необработанные данные акселерометра и гироскопа. Вернет null, если информация об устройстве не найдена.</p>
+  <div class="container">
+
+    <div role="tabpanel">
+      <!-- Nav tabs -->
+      <ul class="nav nav-pills" role="tablist">
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="do">
+
+          <div class="input-group col-xs-12">
+            <span class="input-group-addon">alpha</span>
+            <input type="text" class="form-control" id="do_alpha" disabled>
+          </div>
+
+          <div class="input-group col-xs-12">
+            <span class="input-group-addon">beta</span>
+            <input type="text" class="form-control" id="do_beta" disabled>
+          </div>
+
+          <div class="input-group col-xs-12">
+            <span class="input-group-addon">gamma</span>
+            <input type="text" class="form-control" id="do_gamma" disabled>
+          </div>
+
+          <input type="button" onclick="set_head_gn()" value="Set Head Direction" class="col-xs-12 btn-warning btn"/>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="dm">
+
+          <div class="col-xs-12">
+            Acceleration
+          </div>
+          <div class="input-group col-xs-4 first">
+            <span class="input-group-addon">x</span>
+            <input type="text" class="form-control" id="dm_x" disabled>
+          </div>
+
+          <div class="input-group col-xs-4">
+            <span class="input-group-addon">y</span>
+            <input type="text" class="form-control" id="dm_y" disabled>
+          </div>
+
+          <div class="input-group col-xs-4">
+            <span class="input-group-addon">z</span>
+            <input type="text" class="form-control" id="dm_z" disabled>
+          </div>
+          <br><br><br><br>
+          <div class="col-xs-12">
+            Acceleration including gravity
+          </div>
+
+          <div class="input-group col-xs-4 first">
+            <span class="input-group-addon">x</span>
+            <input type="text" class="form-control" id="dm_gx" disabled>
+          </div>
+
+          <div class="input-group col-xs-4">
+            <span class="input-group-addon">y</span>
+            <input type="text" class="form-control" id="dm_gy" disabled>
+          </div>
+
+          <div class="input-group col-xs-4">
+            <span class="input-group-addon">z</span>
+            <input type="text" class="form-control" id="dm_gz" disabled>
+          </div>
+
+          <input type="button" onclick="norm_gn()" value="Normalize" class="col-xs-6 btn-warning btn"/>
+          <input type="button" onclick="org_gn()" value="Original" class="col-xs-6 btn-warning btn"/>
+          <br><br>
+          <p>&nbsp;</p>
+          <div class="col-xs-12">
+            Rotation rate
+          </div>
+          <div class="input-group col-xs-12">
+            <span class="input-group-addon">alpha</span>
+            <input type="text" class="form-control" id="dm_alpha" disabled>
+          </div>
+
+          <div class="input-group col-xs-12">
+            <span class="input-group-addon">beta</span>
+            <input type="text" class="form-control" id="dm_beta" disabled>
+          </div>
+
+          <div class="input-group col-xs-12">
+            <span class="input-group-addon">gamma</span>
+            <input type="text" class="form-control" id="dm_gamma" disabled>
+          </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="logs">
+          <br><br><br><br>
+          <textarea class="col-xs-12 form-control" id="error-message" style="height:100px" placeholder="Log area..." disabled></textarea>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div style="display:none;">
+    <input type="button" onclick="start_gn()" value="START" class="col-xs-6 btn-info btn"/>
+    <input type="button" onclick="stop_gn()" value="STOP" class="col-xs-6 btn-info btn"/>
+
+  </div>
+  </body>
+</html>
