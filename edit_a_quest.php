@@ -154,7 +154,7 @@ verification_of_authorization();
     $task_count = mysqli_num_rows($task_c);
     for($i=0; $i<$task_count; $i++){
         $arr_task = mysqli_fetch_assoc($task_c);
-        SELECT `id_task_passing`, `id_task`, `id_quests`, `inf_task_text`, `answer`, `hint`, `status`, `time`, `coordinates`, `file_url` FROM `task` WHERE 1
+       /* SELECT `id_task_passing`, `id_task`, `id_quests`, `inf_task_text`, `answer`, `hint`, `status`, `time`, `coordinates`, `file_url` FROM `task` WHERE 1*/
     }
 
     ?>
