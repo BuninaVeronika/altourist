@@ -108,7 +108,7 @@ global $connect;
 	
 	<a href="section_quest.php?section=$id_section"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 250px;">$section_name</p></a>
 	<a href="section_quest.php?location=$id_location"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 250px;">$location_name</p></a>
-		<p title="Стоимость" class="icon_list">&#xf158;</p><p>$sale</p>
+	<p title="Стоимость" class="icon_list">&#xf158;</p><p>$sale</p>
 	<p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time </p><p>мин.</p>
 	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance </p><p>км.</p>
 	
@@ -285,7 +285,7 @@ if($quest_edit_count >0){
 	<a href="quest_tour.php?id_quest=$id_quests_edit"><h1>$quests_name_edit</h1></a>
 	<label>$text_quests_edit</label>
 	<a href="section_quest.php?section=$id_section_edit"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 80%;">$section_name</p></a>
-	<a href="section_quest.php?location=$id_location_edit"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 350px;">$location_name</p></a>
+	<a href="section_quest.php?location=$id_location_edit"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 80%;">$location_name</p></a>
 	
 	<a href="edit_a_quest.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Редактировать"></a>
 	<a href="quest_tour.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Просмотреть"></a>
