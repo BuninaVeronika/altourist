@@ -141,7 +141,7 @@ verification_of_authorization();
 
 
             <div  id='red'></div>
-			<center><a href='personal_account.php'>Завершить создание квеста и выйти на страницу аккаунта.</a></center>
+			<center><a href='personal_account.php'>Завершить редактирование квеста и выйти на страницу аккаунта.</a></center>
 
 		</form>
         <?php else:
@@ -154,7 +154,157 @@ verification_of_authorization();
     $task_count = mysqli_num_rows($task_c);
     for($i=0; $i<$task_count; $i++){
         $arr_task = mysqli_fetch_assoc($task_c);
-       /* SELECT `id_task_passing`, `id_task`, `id_quests`, `inf_task_text`, `answer`, `hint`, `status`, `time`, `coordinates`, `file_url` FROM `task` WHERE 1*/
+        $id_task = $arr_task['id_task'];
+        $id_task_passing = $arr_task['id_task_passing'];
+        $id_quests = $arr_task['id_quests'];
+        $inf_task_text = $arr_task['inf_task_text'];
+        $answer = $arr_task['answer'];
+        $hint = $arr_task['hint'];
+        $time = $arr_task['time'];
+        $coordinates = $arr_task['coordinates'];
+        $file_url = $arr_task['file_url'];
+
+        if ($id_task == '1') {
+            print<<<top
+            <div class="form" style="width: 80%;margin-left: 10%;background-color: #fcf0b3;">
+            <form class="task_class">
+            <h1 class="number_task"> $i Задание </h1><h3>$id_task</h3>
+            <input type="button"  onclick="clear_form(' + int_number + ')" value="Очистить форму" class="button_action">
+            <textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>
+            <label>Фото пояснение задания</label>
+            <input type="file" name="file" class="button_action" placeholder="Фотоответ к заданию">
+            <input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">
+            <label>Каждое задание необходимо сохранять отдельно</label>
+            <input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">
+            <input style="display:none;" type="text" name="id_task" value="' + id_task + '">
+            <input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">
+            <input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">
+top;
+        } else if (id_task == '2') {
+            teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #e1edeb;">'
+                + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
+                + '<form class="task_class">'
+                + '<h1 class="number_task">' + int_number + ' Задание </h1><h3>' + name_task + '</h3>'
+                + '<input type="button"  onclick="clear_form(' + int_number + ')" value="Очистить форму" class="button_action">'
+                + '<textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>'
+                + '<label>Фото пояснение задания</label>'
+                + '<input type="file" name="file" class="button_action" placeholder="Фотоответ к заданию">'
+                + '<input type="text" name="hint" placeholder="Подсказка к заданию" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="answer" placeholder="Распознаваемый на фото текст(Ответ)" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
+                + '<label>Каждое задание необходимо сохранять отдельно</label>'
+                + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
+                + '<input style="display:none;" type="text" name="id_task" value="' + id_task + '">'
+                + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
+                + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
+
+        } else if (id_task == '3') {
+            teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #eff5b8;">'
+                + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
+                + '<form class="task_class">'
+                + '<h1 class="number_task">' + int_number + ' Задание </h1><h3>' + name_task + '</h3>'
+                + '<input type="button"  onclick="clear_form(' + int_number + ')" value="Очистить форму" class="button_action">'
+                + '<textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>'
+                + '<label>Фото пояснение задания</label>'
+                + '<input type="file" name="file" class="button_action" placeholder="Фотоответ к заданию">'
+                + '<input type="text" name="hint" placeholder="Подсказка к заданию" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="answer" placeholder="Количество распознаваемых лиц" pattern="[0-9]{1,2}">'
+                + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
+                + '<label>Каждое задание необходимо сохранять отдельно</label>'
+                + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
+                + '<input style="display:none;" type="text" name="id_task" value="' + id_task + '">'
+                + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
+                + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
+        } else if (id_task == '4') {
+            teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #badbad;">'
+                + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
+                + '<form class="task_class">'
+                + '<h1 class="number_task">' + int_number + ' Задание</h1><h3>' + name_task + '</h3>'
+                + '<input type="button"  onclick="clear_form(' + int_number + ')" value="Очистить форму" class="button_action">'
+                + '<textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>'
+                + '<label>Фото пояснение задания</label>'
+                + '<input type="file" name="file" class="button_action" style="background-color: #89ac76;" placeholder="Фотоответ к заданию">'
+                + '<input type="text" name="hint" placeholder="Подсказка к заданию" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="ansver1" class="text_width" placeholder="Координаты широты" pattern="[' + '\\' + 'd]+' + '\\' + '.[' + '\\' + 'd]{4,}">'
+                + '<input type="text" name="ansver2" class="text_width" placeholder="Координаты долготы" pattern="[' + '\\' + 'd]+' + '\\' + '.[' + '\\' + 'd]{4,}">'
+                + '<input type="button"  onclick="geo_teg(' + int_number + ');" value="Текущие геоданные" class="button_action">'
+                + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
+                + '<label>Каждое задание необходимо сохранять отдельно</label>'
+                + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
+                + '<input style="display:none;" type="text" name="id_task" value="' + id_task + '">'
+                + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
+                + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
+        } else if (id_task == '5') {
+            teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #e3e298;">'
+                + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
+                + '<form class="task_class">'
+                + '<h1 class="number_task">' + int_number + ' Задание</h1><h3>' + name_task + '</h3>'
+                + '<input type="button"  onclick="clear_form(' + int_number + ')" value="Очистить форму" class="button_action">'
+                + '<textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>'
+                + '<input type="text" name="hint" placeholder="Подсказка к заданию" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<label>Фото ответ для сравнения</label>'
+                + '<input type="file" name="file" class="button_action" placeholder="Фотоответ к заданию">'
+                + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
+                + '<label>Каждое задание необходимо сохранять отдельно</label>'
+                + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
+                + '<input style="display:none;" type="text" name="id_task" value="' + id_task + '">'
+                + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
+                + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
+        } else if (id_task == '6') {
+            teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #e2f7df;">'
+                + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
+                + '<form class="task_class">'
+                + '<h1 class="number_task">' + int_number + ' Задание</h1><h3>' + name_task + '</h3>'
+                + '<input type="button"  onclick="clear_form(' + int_number + ')" value="Очистить форму" class="button_action">'
+                + '<textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>'
+                + '<label>Фото пояснение задания</label>'
+                + '<input type="file" name="file" class="button_action" style="background-color: #89ac76;" placeholder="Фотоответ к заданию">'
+                + '<input type="text" name="hint" placeholder="Подсказка к заданию" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="answer" class="qr_adress" placeholder="Ответ на задание для qr чтения" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="button" onclick="save_qr(' + int_number + ')" value="Сохранить QR код" class="button_action">'
+                + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
+                + '<label>Каждое задание необходимо сохранять отдельно</label>'
+                + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
+                + '<input style="display:none;" type="text" name="id_task" value="' + id_task + '">'
+                + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
+                + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
+        } else if (id_task == '7') {
+            teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #e2f7df;">'
+                + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
+                + '<form class="task_class">'
+                + '<h1 class="number_task">' + int_number + ' Задание</h1><h3>' + name_task + '</h3>'
+                + '<input type="button"  onclick="clear_form(' + int_number + ')" value="Очистить форму" class="button_action">'
+                + '<textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>'
+                + '<label>Фото пояснение задания</label>'
+                + '<input type="file" name="file" class="button_action" style="background-color: #89ac76;" placeholder="Фотоответ к заданию">'
+                + '<input type="text" name="hint" placeholder="Подсказка к заданию" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="answer" placeholder="Распознаваемая фраза(Ответ)" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
+                + '<label>Каждое задание необходимо сохранять отдельно</label>'
+                + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
+                + '<input style="display:none;" type="text" name="id_task" value="' + id_task + '">'
+                + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
+                + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
+        } else {
+            teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #fff;">'.
+                . '<div class="hide_form" title="Удалить форму" onclick="delete_form(' . $int_number . ')">x</div>.'
+                . '<form class="task_class" >'.
+                . '<h1 class="number_task">' + int_number + ' Задание </h1><h3>Проверка текста</h3>'.
+                . '<input type="button"  onclick="clear_form(' . int_number . ')" value="Очистить форму" class="button_action">'
+                . '<textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$"></textarea>'
+                . '<label>Фото пояснение задания</label>'
+                . '<input type="file" name="file" class="button_action" style="background-color: #89ac76;" placeholder="Фотоответ к заданию">'
+                + '<input type="text" name="hint" placeholder="Подсказка к заданию" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="answer" placeholder="Ответ на задание" pattern="^[?!,-.а-яА-ЯёЁ0-9' + '\\' + 's]+$">'
+                + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
+                + '<label>Каждое задание необходимо сохранять отдельно</label>'
+                + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
+                + '<input style="display:none;" type="text" name="id_task" value="1">'
+                + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
+                + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
+
+        }
+        teg_task .= '</form></div>;
     }
 
     ?>
@@ -180,7 +330,7 @@ verification_of_authorization();
 				<label>Все поля формы являются необязательными, в дальнейшем вы можете отредактировать их или дождаться изменений от модератора</label>
 			</div>
 
-    <a href='personal_account.php' class="quest_a"><input type="button"  onclick='' value=" Завершить создание квест-тура " class="button_action"></a>
+    <a href='personal_account.php' class="quest_a"><input type="button"  onclick='' value=" Завершить редактирование квест-тура " class="button_action"></a>
 
     <div id='qr_gen' style="display: none;">
 <input type="text" name="ansver" id="text_qr" placeholder="Ответ на задание для qr чтения" pattern="^[А-Яа-яЁё'+'\\'+'s]+$">
