@@ -21,9 +21,10 @@ $man = $array_section["man"];
 $complication = $array_section["complication"];
 $id_t = $array_section["id_t"];
 $status = $array_section["status"];
+//проверить на статус, если 1, редактировать нельзя
 $technical = $array_section["technical"];
-$id_location = $array_section["id_location"];
-$id_section = $array_section["id_section"];
+$id_location_quests = $array_section["id_location"];
+$id_section_quests = $array_section["id_section"];
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -105,13 +106,19 @@ verification_of_authorization();
 			$array_section=mysqli_fetch_assoc($section);
 			$id_section=$array_section["id_section"];
     		$section_name=$array_section["section_name"];
-    		echo "<option value='$id_section'>$section_name</option>";
+            if ($id_section_quests == $id_section){
+                echo "<option selected value='$id_section'>$section_name</option>";
+            }
+            else {
+                echo "<option value='$id_section'>$section_name</option>";
+            }
+
     	}
 ?>
 			</select>
 
 			<select class="select-css" name='location'>
-			<option value="" hidden disabled selected>Район города</option>
+			<option value="" hidden disabled>Район города</option>
 <?php
 		$location = mysqli_query($connect,"SELECT * FROM `location`");
 		$location_count = mysqli_num_rows($location);
@@ -119,13 +126,18 @@ verification_of_authorization();
 			$array_location=mysqli_fetch_assoc($location);
 			$id_location=$array_location["id_location"];
     		$location_name=$array_location["location_name"];
-    		echo "<option value='$id_location'>$location_name</option>";
+            if ($id_location_quests == $id_location){
+                echo "<option selected value='$id_location'>$location_name</option>";
+            }
+            else {
+                echo "<option value='$id_location'>$location_name</option>";
+            }
     	}
 ?>
 			</select>
 			<label>Чтобы добавить задания,<b> сохраните информацию о квест-туре</b>, в дальнейшем ее можно отредактировать до официального подтверждения модератора.</label>
             <input type='button' style='margin-bottom: 35px;' value='Редактировать Квест-Тур' class='button_action' onclick='red_quest()'>
-            <input style='display:none;' type='text' name='id_quest_value' id='id_quest_value' value="<?=$id_quests?>">";
+            <input style='display:none;' type='text' name='id_quest_value' id='id_quest_value' value="<?=$id_quests?>">
 
 
             <div  id='red'></div>
@@ -137,6 +149,15 @@ verification_of_authorization();
          ?>
         <?endif;?>
 	</div>
+    <?php
+    $task_c = mysqli_query($connect, "SELECT * FROM `task` WHERE `id_quests`='$id_quests'");
+    $task_count = mysqli_num_rows($task_c);
+    for($i=0; $i<$task_count; $i++){
+        $arr_task = mysqli_fetch_assoc($task_c);
+        SELECT `id_task_passing`, `id_task`, `id_quests`, `inf_task_text`, `answer`, `hint`, `status`, `time`, `coordinates`, `file_url` FROM `task` WHERE 1
+    }
+
+    ?>
 
 			<div id='more_task' style="color:black;"></div>
 			<div id='task'>
