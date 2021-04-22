@@ -256,7 +256,6 @@ function add_quest() {
 }
 
 var int_number = 0;
-
 function new_form() {
     int_number++;
     var id_quest_value = $('#id_quest_value').val();//иди квеста

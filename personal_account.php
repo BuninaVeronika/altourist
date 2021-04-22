@@ -241,6 +241,66 @@ quest_purchases2;
 
 </section>
 
+<?php
+$quest_edit = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_t`='$id_t'");
+$quest_edit_count = mysqli_num_rows($quest_edit);
+
+if($quest_edit_count >0){
+    print('<div style="width: 100%; display:flex;"><a><h1>Редактируемые квесты</h1></a></div>');
+    for ($i = 0; $i < $quest_edit_count; $i++) {
+
+        $arr_edit = mysqli_fetch_assoc($quest_edit);
+        $id_quests_edit = $arr_edit["id_quests"];
+        $quests_name_edit = $arr_edit["quests_name"];
+        $text_quests_edit = $arr_edit["text_quests"];
+        $reiting_edit = $arr_edit["reiting"];
+        $file_edit = $arr_edit["file"];
+        $age_edit = $arr_edit["age"];
+        $sale_edit = $arr_edit["sale"];
+        $time_edit = $arr_edit["time"];
+        $complication_edit = $arr_edit["complication"];
+        $distance_edit = $arr_edit["distance"];
+        $id_t_deferred_edit = $arr_edit["id_t"];
+        $status_edit = $arr_edit["status"];
+        $technical_edit = $arr_edit["technical"];
+        $id_location_edit = $arr_edit["id_location"];
+        $id_section_edit = $arr_edit["id_section"];
+        $section = mysqli_query($connect, "SELECT * FROM `section` WHERE `id_section`='$id_section_edit'");
+        $array = mysqli_fetch_assoc($section);
+        $section_name = $array["section_name"];
+        $location_section = mysqli_query($connect, "SELECT * FROM `location` WHERE `id_location`='$id_location_edit'");
+        $array_location = mysqli_fetch_assoc($location_section);
+        $location_name = $array_location["location_name"];
+        if($status_edit==0){ echo ("<div class='form section_quest'>");}
+        elseif ($status_edit==-1){ echo ("<div style='background: #ffcf94;' class='form section_quest'>");}
+        else { echo ("<div style='background: #a1c2a1;' class='form section_quest'>");}
+        print<<<section_quest
+
+    
+	<section class="left_info">
+	<img style="width: 60%;" src='$file_edit'/>
+	</section>
+	<div class="right_info">
+    <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication_edit</p>
+	<a href="quest_tour.php?id_quest=$id_quests_edit"><h1>$quests_name_edit</h1></a>
+	<label></label>
+	<a href="section_quest.php?section=$id_section_edit"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 250px;">$section_name</p></a>
+	<a href="section_quest.php?location=$id_location_edit"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 250px;">$location_name</p></a>
+		<p title="Стоимость" class="icon_list">&#xf158;</p><p>$sale_edit</p>
+	<p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time_edit </p><p>мин.</p>
+	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance_edit </p><p>км.</p>
+	
+	<a href="edit_a_quest.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Редактировать"></a>
+	<a href="quest_tour.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Просмотреть"></a>
+	</div>
+	</div>
+
+section_quest;
+    }
+}
+
+?>
+
 
 <?php
 footer_block();
