@@ -256,6 +256,10 @@ function add_quest() {
 }
 
 var int_number = 0;
+var task_count_number = $('#task_count_number').val();
+if (typeof task_count_number !== 'undefined') {
+    int_number=task_count_number;
+}
 
 function new_form() {
     int_number++;
