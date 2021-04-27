@@ -267,7 +267,7 @@ function new_form() {
     var id_task = $('.task_real option:selected').attr('alt');//иди задания
     var name_task = $('.task_real option:selected').html();//иди задания
     var teg_task = "";
-    if (id_task == '1') {
+    if (id_task == '8') {
         teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #fcf0b3;">'
             + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
             + '<form class="task_class">'
@@ -522,6 +522,27 @@ function delete_form(e) {
     var divsToHide = document.getElementsByClassName("form");
     divsToHide[e].style.visibility = "hidden";
     divsToHide[e].style.display = "none";
+}
+function delete_task(e){
+
+    var formData = new FormData($('.task_class')[e - 1]);
+
+    var divsToHide = document.getElementsByClassName("form");
+    divsToHide[e].style.visibility = "hidden";
+    divsToHide[e].style.display = "none";
+
+
+    $.ajax({
+        type: "POST",
+        processData: false,
+        contentType: false,
+        url: "php_form/delete_task.php",
+        data: formData
+    }) .done(function (data) {
+            /*alert(data);*/
+        }
+    );
+
 }
 
 $("#feedback_click").on("click", function () {

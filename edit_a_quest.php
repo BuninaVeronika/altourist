@@ -4,15 +4,19 @@ global $connect;
 
 $id_quest = $_GET['id_quest'];
 $cooki_hash_s = $_SESSION['cooki_hash'];
-//тут надо проверить если что через куки еще
+
 $number = mysqli_query($connect, "SELECT * FROM `user_tourist` WHERE `cookies_hash`='$cooki_hash_s'");
 $ary = mysqli_fetch_assoc($number);
 $id_t = $ary["id_t"];
-//посмотреть что у нас за пое в админке за роль отвечает
+$role_admin = $ary["role_admin"];
 $number_confirmation = $ary["number_confirmation"];
+if($role_admin==1){
+    $section_quest = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests`='$id_quest'");
+}
+else{
+    $section_quest = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests`='$id_quest' AND `id_t`='$id_t'");
+}
 
-$section_quest = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests`='$id_quest' AND `id_t`='$id_t' OR ");
-// тут можно прямо в запросе сделать проверку на статус и по хорошему отношение к пользователю
 $section_count = mysqli_num_rows($section_quest);
 
 $array_section = mysqli_fetch_assoc($section_quest);
@@ -61,13 +65,13 @@ $id_section_quests = $array_section["id_section"];
 </head>
 <body>
 
-<!--Надо будет вставить на всех достпуных для просмотрах страницах-->
+
 <div class="kies" id='cookies_class'>
     <input type="button" name="" id='cookies_ok' value="ОК">
     <p>Используя данный сайт, вы даете согласие на использование файлов cookie, данных о местоположении и IP-адрес,
         помогающих нам сделать сервис удобнее для вас. <a href=''>Подробнее</a></p>
 </div>
-<!--Скорей всего выведем в подзагрузку шапку сайта-->
+
 
 <header id='head_top'>
     <a href='index.php'><img class='logo_img' src="img/logo1.svg">
@@ -90,6 +94,10 @@ verification_of_authorization();
     if ($number_confirmation == 0) {
         exit("<h3>Пожалуйста, подтвердите телефонный номер в профиле аккаунта. Это необходимо для безопасности пользователей вашего квест-тура.</h3> <a href='personal_account.php'><input type='button' value='Вернуться в профиль' class='button_action'></a>");
     }
+    if ($status == 1) {
+        exit("<h3>Этот квест уже подтвержден администратором, его нельзя редактировать.</h3> <a href='personal_account.php'><input type='button' value='Вернуться в профиль' class='button_action'></a>");
+    }
+
     ?>
     <form id='add_save'>
 
@@ -197,7 +205,7 @@ if($id_task == 8){
                 
                 <form class="task_class" >
                 <h1 class="number_task" >$i  Задание </h1 ><h3 > $type </h3 >
-                
+                <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
                 <textarea class="text_quest" name = "text" placeholder = "Ключевое задание и описание объекта..." pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >$inf_task_text</textarea >
                 <label > Фото пояснение задания </label >
                 <input value="$file_url" type = "file" name = "file" class="button_action" style = "background-color: #89ac76;" placeholder = "Фотоответ к заданию" >
@@ -217,7 +225,7 @@ top8;
             
             <form class="task_class">
             <h1 class="number_task"> $i Задание </h1><h3>$type</h3>
-            
+            <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
             <textarea class="text_quest" name="text" placeholder="Ключевое задание и описание объекта..." pattern="^[?!,-.а-яА-ЯёЁ0-9\s]+$">$inf_task_text</textarea>
             <label>Фото пояснение задания</label>
             <input value="$file_url" type="file" name="file" class="button_action" placeholder="Фотоответ к заданию">
@@ -234,7 +242,7 @@ top;
                 
                 <form class="task_class" >
                 <h1 class="number_task" > $i  Задание </h1 ><h3 >$type</h3 >
-                
+                <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
                 <textarea class="text_quest" name = "text" placeholder = "Ключевое задание и описание объекта..." pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >$inf_task_text</textarea >
                 <label > Фото пояснение задания </label >
                 <input value="$file_url" type = "file" name = "file" class="button_action" placeholder = "Фотоответ к заданию" >
@@ -253,7 +261,7 @@ print<<<top3
                 
                 <form class="task_class" >
                 <h1 class="number_task" >$i  Задание </h1 ><h3 > $type </h3 >
-                
+                <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
                 <textarea class="text_quest" name = "text" placeholder = "Ключевое задание и описание объекта..." pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >$inf_task_text</textarea >
                 <label > Фото пояснение задания </label >
                 <input value="$file_url" type = "file" name = "file" class="button_action" placeholder = "Фотоответ к заданию" >
@@ -272,7 +280,7 @@ top3;
                 
                 <form class="task_class" >
                 <h1 class="number_task" >$i  Задание </h1 ><h3 > $type </h3 >
-                
+                <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
                 <textarea class="text_quest" name = "text" placeholder = "Ключевое задание и описание объекта..." pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >$inf_task_text</textarea >
                 <label > Фото пояснение задания </label >
                 <input value="$file_url" type = "file" name = "file" class="button_action" style = "background-color: #89ac76;" placeholder = "Фотоответ к заданию" >
@@ -294,7 +302,7 @@ print<<<top5
                 
                 <form class="task_class" >
                 <h1 class="number_task" > $i  Задание </h1 ><h3 > $type </h3 >
-                
+                <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
                 <textarea class="text_quest" name = "text" placeholder = "Ключевое задание и описание объекта..." pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >$inf_task_text</textarea >
                 <input value="$hint" type = "text" name = "hint" placeholder = "Подсказка к заданию" pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >
                 <label > Фото ответ для сравнения </label >
@@ -312,7 +320,7 @@ print<<<top6
                 
                 <form class="task_class" >
                 <h1 class="number_task" > $i  Задание </h1 ><h3 >$type </h3 >
-                
+                <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
                 <textarea class="text_quest" name = "text" placeholder = "Ключевое задание и описание объекта..." pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >$inf_task_text</textarea >
                 <label > Фото пояснение задания </label >
                 <input value="$file_url" type = "file" name = "file" class="button_action" style = "background-color: #89ac76;" placeholder = "Фотоответ к заданию" >
@@ -332,7 +340,7 @@ print<<<top7
                 
                 <form class="task_class" >
                 <h1 class="number_task" >$i  Задание </h1 ><h3 > $type </h3 >
-                
+                <input type = "button"  onclick = "delete_task($i);" value = "Удалить задание" class="button_action" >
                 <textarea class="text_quest" name = "text" placeholder = "Ключевое задание и описание объекта..." pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >$inf_task_text</textarea >
                 <label > Фото пояснение задания </label >
                 <input value="$file_url" type = "file" name = "file" class="button_action" style = "background-color: #89ac76;" placeholder = "Фотоответ к заданию" >
@@ -344,6 +352,7 @@ print<<<top7
                 <input style = "display:none;" type = "text" name = "id_task" value = "$id_task_passing" >
                 <input style = "display:none;" type = "text" value = "1" placeholder = "Значение для редактирования" >
                 <input type = "button"  onclick = "save_task($i);" value = "Редактировать задание" class="button_action" >
+                
 top7;
     }
     echo '</form></div >';
