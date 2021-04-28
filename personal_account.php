@@ -1,6 +1,8 @@
 <?php include_once('include/include.php');
 header_block();
-
+if(empty($_GET['qsection'])){
+    $_GET['qsection']='o';
+}
 global $connect;
 ?>
 <div class='form'>
@@ -38,34 +40,35 @@ global $connect;
             echo "<h3 style='color:#F1B24A;'>Подтвердите телефонный номер, чтобы иметь возможность добавлять квесты.</h3>";
             //Кнопка для повторного письма и соотвествующее пояснение, что письмо может быть в спаме
         }
+        echo "<img class='avatar_person' src=" . "$avatar" . ">";
+        echo "<h3 class='h3_person'>" . $name . "</h3>";
+        echo "<h3 class='h3_person'>" . $email . "</h3><h2 class='h2_person'>Email</h2>";
+        echo "<h3 class='h3_person'>" . $number . "</h3><h2 class='h2_person'>Телефон</h2>";
 
-        echo "<h3> Приветствуем вас," . $name . "</h3>";
-        echo "<h3>Email: " . $email . "</h3>";
-        echo "<h3>Телефон: " . $number . "</h3>";
-        echo "<img style='float:right; width:30%; margin:10px 35%;' src=" . "$avatar" . ">";
         //сообщение о подтверждение телефона и кнопка для соотвественно сообщения
     }
 
     ?>
-    </h3>
-    <center><a href='#'>Отказаться от рассылок на почту</a></center>
+
+    <a href='#' style="width: 90%; text-align: center; float: left;">Отказаться от рассылок на почту</a>
     <br>
     <input type="button" class='button_action' onclick='close_account()' value="Выход" name="">
     <a href='account_edit.php'><input type="button" class='button_action' value="Редактировать профиль" name=""></a>
 
     <?if($number_confirmation ==1):?><a href='add_a_quest.php'><input type="button" class='button_action' name="" value="Добавить квест"></a><?endif;?>
 </div>
+<div class="form">Текущий в прохождении квест</div>
 
 <section class="lk_section_block" style="width: 100%; float:left;">
 
-    <div>
-        <a href="/personal_account.php?qsection=o"><h1>Отложенные квесты</h1></a>
-        <?if($email_confirmation==1):?><a href="/personal_account.php?qsection=p"><h1>Квесты в прохождении</h1></a><?endif;?>
-        <a href="/personal_account.php?qsection=s"><h1>Купленные квесты</a></a>
+    <div class="nav_section">
+        <a <?if($_GET['qsection']=='o'):?> style="background: #4D774E;" <?endif;?> href="/personal_account.php?qsection=o"><h1>Отложенные квесты</h1></a>
+        <?if($email_confirmation==1):?><a <?if($_GET['qsection']=='p'):?> style="background: #4D774E;" <?endif;?> href="/personal_account.php?qsection=p"><h1>Квесты в прохождении</h1></a><?endif;?>
+        <a <?if($_GET['qsection']=='s'):?> style="background: #4D774E;" <?endif;?> href="/personal_account.php?qsection=s"><h1>Купленные квесты</h1></a>
     </div>
 
     <?php
-    if($_GET['qsection']=='o' || empty($_GET['qsection']) ) {
+    if(empty($_GET['qsection']) || $_GET['qsection']=='o') {
         $deferred_quests = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests` IN (SELECT `id_quests` FROM `deferred_quests` WHERE `id_t`='$id_t')");
         $deferred_quests_count = mysqli_num_rows($deferred_quests);
         if (!$deferred_quests) {
@@ -246,7 +249,7 @@ $quest_edit = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_t`
 $quest_edit_count = mysqli_num_rows($quest_edit);
 
 if($quest_edit_count >0){
-    print('<div style="width: 100%; display:flex;"><a><h1>Редактируемые квесты</h1></a></div>');
+    print('<div class="edit_quest_div"><h1>Редактируемые квесты</h1></div>');
     for ($i = 0; $i < $quest_edit_count; $i++) {
 
         $arr_edit = mysqli_fetch_assoc($quest_edit);
@@ -286,13 +289,17 @@ if($quest_edit_count >0){
 	<label>$text_quests_edit</label>
 	<a href="section_quest.php?section=$id_section_edit"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 80%;">$section_name</p></a>
 	<a href="section_quest.php?location=$id_location_edit"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 80%;">$location_name</p></a>
-	
-	<a href="edit_a_quest.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Редактировать"></a>
-	<a href="quest_tour.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Просмотреть"></a>
-	</div>
-	</div>
-
 section_quest;
+        if($status_edit!=1){
+            echo ('<a href="edit_a_quest.php?id_quest=$id_quests_edit"><input class="button_action" type="button" name="quest_info" value="Редактировать"></a>');
+        }
+	print<<<section_quest
+    <a href="quest_tour.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Просмотреть"></a>
+	</div>
+	</div>
+section_quest;
+
+
     }
 }
 
