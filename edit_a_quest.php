@@ -94,7 +94,7 @@ verification_of_authorization();
     if ($number_confirmation == 0) {
         exit("<h3>Пожалуйста, подтвердите телефонный номер в профиле аккаунта. Это необходимо для безопасности пользователей вашего квест-тура.</h3> <a href='personal_account.php'><input type='button' value='Вернуться в профиль' class='button_action'></a>");
     }
-    if ($status == 1) {
+    if ($status == 1 && $role_admin!=1) {
         exit("<h3>Этот квест уже подтвержден администратором, его нельзя редактировать.</h3> <a href='personal_account.php'><input type='button' value='Вернуться в профиль' class='button_action'></a>");
     }
 

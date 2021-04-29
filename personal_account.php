@@ -216,7 +216,7 @@ section_quest;
 quest_purchases;
 	if($email_confirmation==1){
         print<<<quest_purchases3
-<input style='width: 200px;' class='purchase button_action'  id_quest='$id_quests_purchases' type='button' name='quest_info' value='Начать прохождение'>
+<input style='width: 280px;' class='purchase button_action'  id_quest='$id_quests_purchases' type='button' name='quest_info' value='Начать прохождение'>
 <p style='z-index: 15;position: relative; float:left; width: 100%;'>Уровень прохождения</p>
 quest_purchases3;
 	}
@@ -291,7 +291,9 @@ if($quest_edit_count >0){
 	<a href="section_quest.php?location=$id_location_edit"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 80%;">$location_name</p></a>
 section_quest;
         if($status_edit!=1){
-            echo ('<a href="edit_a_quest.php?id_quest=$id_quests_edit"><input class="button_action" type="button" name="quest_info" value="Редактировать"></a>');
+print<<<section_quest
+            <a href="edit_a_quest.php?id_quest=$id_quests_edit"><input class="button_action" type="button" name="quest_info" value="Редактировать"></a>
+section_quest;
         }
 	print<<<section_quest
     <a href="quest_tour.php?id_quest=$id_quests_edit"><input class='button_action' type="button" name="quest_info" value="Просмотреть"></a>

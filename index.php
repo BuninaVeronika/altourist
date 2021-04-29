@@ -134,7 +134,7 @@ block;
 
 print<<<id
         <h5 id='tem_result'><a href="section_quest.php?section=$id_section">Спортивные</a></h5>
-        <a href="quest_tour.php?id_quest="><h4 id='name_result'>$quests_name</h4></a>
+        <a href="quest_tour.php?id_quest=$id_quests"><h4 id='name_result'>$quests_name</h4></a>
         <span id='info_result'>$text_quests</span>
         <p class="icon" style="width: 5%;">&#xe801;</p><span style='width: 95%;' id='location_result'><a href="section_quest.php?location=$id_location">$location_name</a></span>
         <p class="icon" style="width: 5%;">&#xf158;</p><p id='sum_result' style="width: 95%;">$sale</p>

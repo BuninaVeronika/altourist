@@ -103,12 +103,27 @@ print<<<section_quest
 	<p title="Стоимость" class="icon_list">&#xf158;</p><h6>$sale</h6><br>
 	<input class='button_check put_aside' title="Отложить" id="button_check" id_quest='$id_quests'  type="button" name="quest_user" value="&#xe806;">
 	<input class='purchase button_action'  id_quest='$id_quests' type="button" name="quest_info" value="Купить">
-	</div>
+section_quest;
+
+$cooki_hash_s=$_COOKIE['cooki_hash'] ?? '';
+if(empty($cooki_hash_s)){$cooki_hash_s=$_SESSION['cooki_hash']?? '';}
+$account = mysqli_query($connect, "SELECT * FROM `user_tourist` WHERE `cookies_hash`='$cooki_hash_s'");
+$array = mysqli_fetch_assoc($account);
+$status_edit = $array["role_admin"];
+	if($status_edit!==1){
+        ?>
+	    <a href="edit_a_quest.php?id_quest=<?=$id_quests?>"><input style="margin-left: 13%; margin-top:20px;" class="button_action" type="button" name="quest_info" value="Редактировать"></a>
+        <input style="margin-left: 13%; margin-top:20px; background: #4D774E;" class="button_action quest_check" type="button" name="quest_info" id_quest='<?=$id_quests?>' value="Подтвердить квест">
+        <input style="margin-left: 13%; margin-top:20px; background: #F1B24A; color: white;" class="button_action quest_fail" type="button" name="quest_info" id_quest='<?=$id_quests?>' value="Отклонить квест">
+
+        <?
+}
+	 echo ('</div>');
 	
-    </div>
+     echo ('</div>');
 
     
-section_quest;
+
 echo('<ul>');
 $task = mysqli_query($connect, "SELECT DISTINCT `id_task` FROM `task` WHERE `id_quests`='$id_quest'");
 $t_count = mysqli_num_rows($task);
@@ -144,8 +159,7 @@ echo($carta);
 </div>
 </div>
 <?php
-$cooki_hash_s=$_COOKIE['cooki_hash']?? '';
-if(empty($cooki_hash_s)){$cooki_hash_s=$_SESSION['cooki_hash']?? '';}
+
 if(empty($cooki_hash_s)){echo("<form id='feedback' style='text-align: center;'><label style='color: #ffffff'>Авторизуйтесь и купите квест, чтобы оставить отзыв</label></form>");}
 else{
     print<<<top

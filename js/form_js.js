@@ -569,3 +569,21 @@ $("#feedback_click").on("click", function () {
             }
         });
 });
+$(".quest_check").on("click",function(){
+    $.post("php_form/quest_check.php",
+        {
+            id_quest:$(this).attr("id_quest")
+        },
+        function(data) {
+            alert(data);
+        });
+});
+$(".quest_fail").on("click",function(){
+    $.post("php_form/quest_fail.php",
+        {
+            id_quest:$(this).attr("id_quest")
+        },
+        function(data) {
+            alert(data);
+        });
+});
