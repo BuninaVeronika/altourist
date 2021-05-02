@@ -587,3 +587,13 @@ $(".quest_fail").on("click",function(){
             alert(data);
         });
 });
+$(".quest_del_deferred").on("click",function(){
+    $.post("php_form/quest_del_deferred.php",
+        {
+            id_quest:$(this).attr("id_quest")
+        },
+        function(data) {
+            alert(data);
+            window.location.reload();
+        });
+});

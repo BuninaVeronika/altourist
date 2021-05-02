@@ -50,7 +50,7 @@ global $connect;
 
     ?>
 
-    <a href='#' style="width: 90%; text-align: center; float: left;">Отказаться от рассылок на почту</a>
+    <a href='php_form/mailing_email.php' style="width: 90%; text-align: center; float: left;">Отказаться от рассылок на почту</a>
     <br>
     <input type="button" class='button_action' onclick='close_account()' value="Выход" name="">
     <a href='account_edit.php'><input type="button" class='button_action' value="Редактировать профиль" name=""></a>
@@ -70,6 +70,7 @@ global $connect;
     <?php
     if(empty($_GET['qsection']) || $_GET['qsection']=='o') {
         $deferred_quests = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests` IN (SELECT `id_quests` FROM `deferred_quests` WHERE `id_t`='$id_t')");
+
         $deferred_quests_count = mysqli_num_rows($deferred_quests);
         if (!$deferred_quests) {
             exit ('Неверный запрос: ' . mysqli_error($connect));
@@ -116,8 +117,8 @@ global $connect;
 	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance </p><p>км.</p>
 	
 	<a href="quest_tour.php?id_quest=$id_quests"><input class='button_action' type="button" name="quest_info" value="Подробнее"></a>
-	</div>
-	</div>
+	<input class='button_action quest_del_deferred' id_quest='$id_quests' onclick="" type="button" name="quest_info" value="Убрать из отложенных">
+	</div></div>
 
 section_quest;
             }
