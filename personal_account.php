@@ -217,7 +217,7 @@ section_quest;
 quest_purchases;
 	if($email_confirmation==1){
         print<<<quest_purchases3
-<input style='width: 280px;' class='purchase button_action'  id_quest='$id_quests_purchases' type='button' name='quest_info' value='Начать прохождение'>
+<input style='width: 280px;' class='passing_quest_tour button_action'  id_quest='$id_quests_purchases' type='button' name='quest_info' value='Начать прохождение'>
 <p style='z-index: 15;position: relative; float:left; width: 100%;'>Уровень прохождения</p>
 quest_purchases3;
 	}

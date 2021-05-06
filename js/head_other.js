@@ -52,7 +52,7 @@ $('#search_button').click(function(){
         reg_form('.input_search input[type=text]');
         if (!rglr) return false;
 
-        document.location.href = "http://altourist.test/section_quest.php?search="+$('.input_search').val();
+        document.location.href = "../section_quest.php?search=" + $('.input_search').val();
     }
 });
 $(".input_search").keydown(function(e){
@@ -61,25 +61,26 @@ $(".input_search").keydown(function(e){
         if (!rglr) return false;
 
         if ($('.input_search').val() != "") {
-            document.location.href = "http://altourist.test/section_quest.php?search=" + $('.input_search').val();
+            document.location.href = "../section_quest.php?search=" + $('.input_search').val();
         }
     }
 });
 $('#reg_button').on('click', function() {
   //проверить куки и сессии, если есть отправить в профиль, если нет отправить на авторизацию, а на авторизации проверить на соотвествие
 	var a = getCookie('cooki_hash');
-	if(typeof a !== "undefined"){
-  	window.location.href="personal_account.php";}
+	if(typeof a !== "undefined") {
+        window.location.href = "../personal_account.php";
+    }
 	else{
 	 $.ajax({
         url: "php_form/session.php",
         cache: false,
         success: function(html){
             if (html=='Сессия') {
-            	window.location.href="personal_account.php";
+                window.location.href = "../personal_account.php";
             }
-            	else{
-            		window.location.href="registration.php";
+            	else {
+                window.location.href = "../registration.php";
             }
     }
     });
@@ -88,23 +89,35 @@ $('#reg_button').on('click', function() {
 
 $(".put_aside").on("click",function(){
 
-    $.post("php_form/put_aside.php",
-    {
-        id_quest:$(this).attr("id_quest")
-    },
-   function(data) {
-       alert(data);
-      });
+    $.post("../php_form/put_aside.php",
+        {
+            id_quest: $(this).attr("id_quest")
+        },
+        function (data) {
+            alert(data);
+        });
 });
+
 $(".purchase").on("click",function(){
   var yes = confirm('Вы действительно хотите купить этот квест-тур?');
-  if(yes==true){
-    $.post("php_form/purchase.php",
-    {
-        id_quest:$(this).attr("id_quest")
-    },
-   function(data) {
-       alert(data);
-      });
-  }
+    if (yes == true) {
+        $.post("../php_form/purchase.php",
+            {
+                id_quest: $(this).attr("id_quest")
+            },
+            function (data) {
+                alert(data);
+            });
+    }
+});
+
+$(".passing_quest_tour").on("click", function () {
+
+    $.post("../php_form/passing_quest_tour.php",
+        {
+            id_quest: $(this).attr("id_quest")
+        },
+        function (data) {
+            window.location.replace(data);
+        });
 });

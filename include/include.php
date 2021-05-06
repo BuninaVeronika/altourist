@@ -45,7 +45,7 @@ print<<<footer
     <div class='foot_block'>
     <a name="contact"></a>  
         <p style="color: #9DC88D;">&#169; 2020-2021 "Альтуруист"- Активный и пассивный досуг на твоих правилах.</p>
-        <a href='index.php'><img class='logo_img' src="img/logo1.svg"></a>
+        <a href='../index.php'><img class='logo_img' src="../img/logo1.svg"></a>
     </div>
     <div class='foot_block'>
         <h6>Контактные ресурсы</h6>
