@@ -25,6 +25,22 @@ $id_task = $arrayPass['id_task'];
     <script defer src="js/async.js"></script>
 
 </head>
+<script>
+    function acti() {
+        var formData = new FormData($('#action_form')[0]);
+        $.ajax({
+            type: "POST",
+            processData: false,
+            contentType: false,
+            url: "jobphp/job.php",
+            data: formData,
+
+        })
+            .done(function (data) {
+                $("#error").html(data);
+            });
+    }
+</script>
 <body>
 
 <header id='head_top'>
@@ -37,7 +53,7 @@ $id_task = $arrayPass['id_task'];
     </div>
 </header>
 <?php
-if ($id_task != '1') {
+if ($id_task != '5') {
     exit('<label id="error_mess">Задание не соотвествует типу отображаемой страницы или такого задания не существует.<a onclick="javascript:history.back(); return false;">Назад</a></label>');
 } else {
 
@@ -58,20 +74,23 @@ if ($id_task != '1') {
     <center><h1>$type</h1></center>
     <label>$inf_task_text</label>
     <label>Время на задание: $time минут. </label>
-passing;
-    if (!empty($file_url)) {
-        echo '<img class="img_form_task" src="jobphp/' . $file_url . '">';
-    }
-    print<<<passing
+
+	<form method="post" enctype="multipart/form-data" id="action_form">
+	<span style='font-size: 35px;' id='error'></span>  
     <div class="fl_upld">
-			<label style="margin:10px 13%; width: 68%;" class="button_action">
-			<input id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
+			<label style="margin:10px 13%; width: 68%;" class="button_action"><input id="fl_inp" name="file2" type="file" name="file" accept="image/*">Фото для сравнения</label>
 	</div>
-     <input type="hidden" id='time' value="$time_now">
-    <input type="hidden" attr="$id_pass">
-    <p></p><p></p><p></p>
+    <input type="hidden" id='time' value="$time_now">
+    <input type="hidden" name="file1" value="$file_url">
+    <input type="button" onclick="acti()" class='button_action get_result' value="Сравнить изображения" attr="$id_pass">
+    <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
+    <p class="text_task" style="display: none;" id="hint">$hint</p>
+    <input type="button" class='button_action hint but' value="Показать подсказку">
+    <p></p>
+    <p class="text_task" style="display: none;" id="answer"><img class="img_form_task" src="jobphp/$file_url"></p>
+    <input style="display: none;" type="button" class='button_action answer but' value="Показать ответ">
+    </form>
 </div>
-<p></p>
 passing;
 
 }

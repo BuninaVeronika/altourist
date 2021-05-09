@@ -24,7 +24,33 @@ $id_task = $arrayPass['id_task'];
     <script defer src="../js/head_other.js"></script>
     <script defer src="js/async.js"></script>
 
+
 </head>
+<script>
+    function startRecognizer() {
+        if ('webkitSpeechRecognition' in window) {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = 'ru';
+
+            recognition.onresult = function (event) {
+                var result = event.results[event.resultIndex];
+                var span_text = document.getElementById("text");
+                span_text.innerHTML = "";
+                span_text.innerHTML = result[0].transcript;
+            };
+
+            recognition.onend = function () {
+                console.log('Распознавание завершилось.');
+                var test = document.getElementById('outputData').innerText;
+                $('#text').val(test);
+            };
+
+            recognition.start();
+        } else alert('webkitSpeechRecognition не поддерживается :(')
+    }
+
+
+</script>
 <body>
 
 <header id='head_top'>
@@ -37,7 +63,7 @@ $id_task = $arrayPass['id_task'];
     </div>
 </header>
 <?php
-if ($id_task != '1') {
+if ($id_task != '7') {
     exit('<label id="error_mess">Задание не соотвествует типу отображаемой страницы или такого задания не существует.<a onclick="javascript:history.back(); return false;">Назад</a></label>');
 } else {
 
@@ -63,15 +89,18 @@ passing;
         echo '<img class="img_form_task" src="jobphp/' . $file_url . '">';
     }
     print<<<passing
-    <div class="fl_upld">
-			<label style="margin:10px 13%; width: 68%;" class="button_action">
-			<input id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
-	</div>
+    <label id='text' class="text_task">Ключевая фраза</label>
+    <input style="width: 90%;" type="hidden" placeholder="Ответ на вопрос" id="answer_result">
+    <input type="button" class='button_action but' onclick=" startRecognizer()" name="" value="Распознать фразу">
      <input type="hidden" id='time' value="$time_now">
-    <input type="hidden" attr="$id_pass">
-    <p></p><p></p><p></p>
+    <input type="button" class='button_action get_result' value="Отправить ответ" attr="$id_pass">
+    <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
+    <p class="text_task" style="display: none;" id="hint">$hint</p>
+    <input type="button" class='button_action hint but' value="Показать подсказку">
+    <p></p>
+    <p class="text_task" style="display: none;" id="answer">$answer</p>
+    <input style="display: none;" type="button" class='button_action answer but' value="Показать ответ">
 </div>
-<p></p>
 passing;
 
 }

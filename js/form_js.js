@@ -267,7 +267,7 @@ function new_form() {
     var id_task = $('.task_real option:selected').attr('alt');//иди задания
     var name_task = $('.task_real option:selected').html();//иди задания
     var teg_task = "";
-    if (id_task == '8') {
+    if (id_task == '1') {
         teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #fcf0b3;">'
             + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
             + '<form class="task_class">'
@@ -387,7 +387,7 @@ function new_form() {
             + '<input style="display:none;" type="text" name="id_task" value="' + id_task + '">'
             + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
             + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
-    } else {
+    } else if (id_task == '8') {
         teg_task = '<div class="form" style="width: 80%;margin-left: 10%;background-color: #fff;">'
             + '<div class="hide_form" title="Удалить форму" onclick="delete_form(' + int_number + ')">x</div>'
             + '<form class="task_class" >'

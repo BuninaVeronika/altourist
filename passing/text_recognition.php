@@ -22,9 +22,23 @@ $id_task = $arrayPass['id_task'];
     <script defer src="../js/jquery_3.5.1.min.js"></script>
     <script defer src="../js/jq_cookie.js"></script>
     <script defer src="../js/head_other.js"></script>
+    <link rel="stylesheet" href="js/OCR/style.d6e08ada.css">
+    <script defer src="js/OCR/zepto.min.js"></script>
+    <script defer src="js/OCR/app.32385ec6.js"></script>
+    <script defer src="js/OCR/job.js"></script>
+    <script defer src="js/OCR/binaryajax.js"></script>
+    <script defer src="js/OCR/exif.js"></script>
+    <script defer src="js/OCR/canvasResize.js"></script>
     <script defer src="js/async.js"></script>
 
+
 </head>
+<script>
+    setInterval(function () {
+        var test = document.getElementById('log').innerText;
+        $('#answer_result').val(test);
+    }, 100);
+</script>
 <body>
 
 <header id='head_top'>
@@ -37,7 +51,7 @@ $id_task = $arrayPass['id_task'];
     </div>
 </header>
 <?php
-if ($id_task != '1') {
+if ($id_task != '2') {
     exit('<label id="error_mess">Задание не соотвествует типу отображаемой страницы или такого задания не существует.<a onclick="javascript:history.back(); return false;">Назад</a></label>');
 } else {
 
@@ -62,21 +76,55 @@ passing;
     if (!empty($file_url)) {
         echo '<img class="img_form_task" src="jobphp/' . $file_url . '">';
     }
+    ?>
+    <div class="page">
+        <div class="controls text-center">
+            <select id="langs" style="display: none;"> </select>
+        </div>
+        <div class="result">
+            <div class="result__preview text-center">
+
+                <img id="preview" width="400" src="">
+
+                <div id="devcontainer">
+                    <section>
+                        <div id="area">
+                            <div>
+                                <label for="file" class="button_action btn btn-secondary "> ВЫБЕРИТЕ ФАЙЛ
+                                    <input type="file" id="file" name="photo" accept="image/*"> </label>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="result__log">
+                <div id="log"></div>
+                <div class="text-center">
+                    <button type="button" id="start" class="button_action btn btn-primary but"> Начать обработку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?
     print<<<passing
-    <div class="fl_upld">
-			<label style="margin:10px 13%; width: 68%;" class="button_action">
-			<input id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
-	</div>
+    
+    <input style="width: 90%;" type="hidden" placeholder="Ответ на вопрос" id="answer_result">
      <input type="hidden" id='time' value="$time_now">
-    <input type="hidden" attr="$id_pass">
-    <p></p><p></p><p></p>
+    <input style="margin-left: 25%;" type="button" class='button_action get_result' value="Отправить ответ" attr="$id_pass">
+    <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
+    <p class="text_task" style="display: none;" id="hint">$hint</p>
+    <input style="margin-left: 25%;" type="button" class='button_action hint but' value="Показать подсказку">
+    <p></p>
+    <p class="text_task" style="display: none;" id="answer">$answer</p>
+    <input style="margin-left: 25%; display: none;" type="button" class='button_action answer but' value="Показать ответ">
 </div>
-<p></p>
 passing;
 
 }
 
 ?>
+
 <?php
 footer_block();
 ?>

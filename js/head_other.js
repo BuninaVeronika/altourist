@@ -121,3 +121,12 @@ $(".passing_quest_tour").on("click", function () {
             window.location.replace(data);
         });
 });
+
+$(".hint").on("click", function () {
+    $('#hint').css('display', 'block');
+    $('.answer').css('display', 'block');
+});
+$(".answer").on("click", function () {
+    $('#answer').css('display', 'block');
+
+});

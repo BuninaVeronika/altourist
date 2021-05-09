@@ -1,0 +1,149 @@
+small {
+    font-size: .75em;
+    opacity: .5
+}
+
+.page {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 20px
+}
+
+.text-center {
+    text-align: center
+}
+
+input[type=file] {
+    display: none
+}
+
+.
+select {
+    width: 250px
+}
+
+.btn {
+
+}
+
+.btn-secondary {
+
+}
+
+.btn-secondary:hover {
+
+}
+
+.btn-primary {
+
+}
+
+.btn-primary:hover {
+
+}
+
+.btn-primary[disabled], .btn-primary[disabled]:hover {
+
+}
+
+.result {
+
+
+}
+
+.result > div {
+
+
+}
+
+#preview {
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#log, #preview {
+    margin-bottom: 20px
+}
+
+#log {
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    border-radius: 4px;
+    padding: 15px;
+    flex-grow: 1;
+    background: #fff
+}
+
+#log, pre {
+    width: 100%
+}
+
+pre {
+    white-space: pre-line;
+    font-size: 16px
+}
+
+.state {
+    width: 100%;
+    flex-grow: 1;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+    font-size: 14px
+}
+
+.state__status {
+    margin-bottom: 10px
+}
+
+.state__status:after {
+    content: "..."
+}
+
+.state__progress {
+    background-color: #009688;
+    border-radius: 4px;
+    height: 15px;
+    border: 1px solid #eee
+}
+
+.state__progress::-webkit-progress-bar {
+    background-color: #fff
+}
+
+.state__progress::-webkit-progress-value {
+    background-color: #009688
+}
+
+.state__progress::-moz-progress-bar {
+    background-color: #009688
+}
+
+@media screen and (max-width: 860px) {
+    html {
+        font-size: 14px
+    }
+
+    .btn, select {
+        padding: 0 15px
+    }
+
+    .result {
+        display: block;
+        padding: 0
+    }
+
+    .result > div {
+
+
+    }
+}
+
+/*# sourceMappingURL=style.d6e08ada.css.map */

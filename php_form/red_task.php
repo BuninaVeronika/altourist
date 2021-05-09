@@ -9,27 +9,27 @@ global $connect;
 $text=filter_input(INPUT_POST,"text",FILTER_SANITIZE_SPECIAL_CHARS);
 $hint=filter_input(INPUT_POST,"hint",FILTER_SANITIZE_SPECIAL_CHARS);
 $answer=filter_input(INPUT_POST,"answer",FILTER_SANITIZE_SPECIAL_CHARS);
-$time=filter_input(INPUT_POST,"time",FILTER_SANITIZE_SPECIAL_CHARS);
-$ansver1=filter_input(INPUT_POST,"ansver1",FILTER_SANITIZE_SPECIAL_CHARS);
-$ansver2=filter_input(INPUT_POST,"ansver2",FILTER_SANITIZE_SPECIAL_CHARS);
-$id_quest_value=filter_input(INPUT_POST,"id_quest_value",FILTER_SANITIZE_SPECIAL_CHARS);
-$id_task_passing=filter_input(INPUT_POST,"id_task",FILTER_SANITIZE_SPECIAL_CHARS);
+$time = filter_input(INPUT_POST, "time", FILTER_SANITIZE_SPECIAL_CHARS);
+$ansver1 = filter_input(INPUT_POST, "ansver1", FILTER_SANITIZE_SPECIAL_CHARS);
+$ansver2 = filter_input(INPUT_POST, "ansver2", FILTER_SANITIZE_SPECIAL_CHARS);
+$id_quest_value = filter_input(INPUT_POST, "id_quest_value", FILTER_SANITIZE_SPECIAL_CHARS);
+$id_task_passing = filter_input(INPUT_POST, "id_task", FILTER_SANITIZE_SPECIAL_CHARS);
 
-$coordinates=$ansver1.'|'.$ansver2;
+$coordinates = $ansver1 . '|' . $ansver2;
 
-$files=$_FILES["file"]["name"] ?? '';
-$tmppath=$_FILES["file"]["tmp_name"] ?? '';
-$uploaddir="../image/task/";
-$now='image/task/';
-$file=$uploaddir.$id_quest_value.'_'.$id_task_passing.'_'.transliterate($files);
-$namefile=$now.$id_quest_value.'_'.$id_task_passing.'_'.transliterate($files);
+$files = $_FILES["file"]["name"] ?? '';
+$tmppath = $_FILES["file"]["tmp_name"] ?? '';
+$uploaddir = "../passing/jobphp/task/";
+$now = 'task/';
+$file = $uploaddir . $id_quest_value . '_' . $id_task_passing . '_' . transliterate($files);
+$namefile = $now . $id_quest_value . '_' . $id_task_passing . '_' . transliterate($files);
 
 
-$cooki_hash_s=$_SESSION['cooki_hash'];
-$s_mail = mysqli_query($connect,"SELECT * FROM `user_tourist` WHERE `cookies_hash`='$cooki_hash_s'");
-$arys=mysqli_fetch_assoc($s_mail);
-$id_t=$arys["id_t"];
-$role_admin=$arys["role_admin"];
+$cooki_hash_s = $_SESSION['cooki_hash'];
+$s_mail = mysqli_query($connect, "SELECT * FROM `user_tourist` WHERE `cookies_hash`='$cooki_hash_s'");
+$arys = mysqli_fetch_assoc($s_mail);
+$id_t = $arys["id_t"];
+$role_admin = $arys["role_admin"];
 
 if(!empty($cooki_hash)){
 	 die("Ошибка доступа пользователя!");

@@ -842,7 +842,6 @@ a {
     width: 100%;
     color: white;
     letter-spacing: 1px;
-
 }
 
 .passing_form {
@@ -851,6 +850,28 @@ a {
     min-height: 450px;
 }
 
+.img_form_task {
+    width: 80%;
+    margin: 10px 10%;
+    border-radius: 15px;
+    box-shadow: 5px 5px rgb(0 0 0 / 10%);
+}
+
+.text_task {
+    font-family: 'normal';
+    color: #4D774E;
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    float: left;
+    text-align: center;
+    font-size: 20pt;
+}
+
+.but {
+    margin: 10px 13%;
+    width: 68%;
+}
 
 {
     color: #164A41

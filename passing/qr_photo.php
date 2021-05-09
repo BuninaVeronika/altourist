@@ -22,9 +22,42 @@ $id_task = $arrayPass['id_task'];
     <script defer src="../js/jquery_3.5.1.min.js"></script>
     <script defer src="../js/jq_cookie.js"></script>
     <script defer src="../js/head_other.js"></script>
+    <script defer src="js/qrcode.js"></script>
+    <script defer src="js/jsQR.js"></script>
+    <script defer src="js/app.js"></script>
     <script defer src="js/async.js"></script>
 
+    <style>
+        #loadingMessage {
+            text-align: center;
+            padding: 40px;
+            width: 90%;
+            float: right;
+        }
+
+        #canvas {
+            margin-left: 20%;
+            width: 60%;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            padding-bottom: 0;
+        }
+
+        #output div {
+            padding-bottom: 10px;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
+<script>
+    setInterval(function () {
+        var test = document.getElementById('outputData').innerText;
+        $('#answer_result').val(test);
+    }, 100);
+</script>
 <body>
 
 <header id='head_top'>
@@ -37,7 +70,7 @@ $id_task = $arrayPass['id_task'];
     </div>
 </header>
 <?php
-if ($id_task != '1') {
+if ($id_task != '6') {
     exit('<label id="error_mess">Задание не соотвествует типу отображаемой страницы или такого задания не существует.<a onclick="javascript:history.back(); return false;">Назад</a></label>');
 } else {
 
@@ -62,18 +95,25 @@ passing;
     if (!empty($file_url)) {
         echo '<img class="img_form_task" src="jobphp/' . $file_url . '">';
     }
-    print<<<passing
-    <div class="fl_upld">
-			<label style="margin:10px 13%; width: 68%;" class="button_action">
-			<input id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
-	</div>
-     <input type="hidden" id='time' value="$time_now">
-    <input type="hidden" attr="$id_pass">
-    <p></p><p></p><p></p>
-</div>
-<p></p>
-passing;
+    ?>
+    <div id="loadingMessage">Нет доступа к камере</div>
+    <canvas id="canvas" hidden></canvas>
+    <div id="output" hidden>
+        <div id="outputMessage"></div>
+        <div hidden><span id="outputData" class="text_task"></span></div>
 
+    </div>
+    <?
+    print<<<passing
+    <input type="hidden" placeholder="Ответ на вопрос" id="answer_result">
+    <input type="hidden" id='time' value="$time_now">
+    <input type="button" class='button_action get_result' value="Отправить ответ" attr="$id_pass">
+    <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
+    <p class="text_task" style="display: none;" id="hint">$hint</p>
+    <input type="button" class='button_action hint but' value="Показать подсказку">
+    <p></p>
+</div>
+passing;
 }
 
 ?>

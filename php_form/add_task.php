@@ -8,28 +8,27 @@ global $connect;
 $text=filter_input(INPUT_POST,"text",FILTER_SANITIZE_SPECIAL_CHARS);
 $hint=filter_input(INPUT_POST,"hint",FILTER_SANITIZE_SPECIAL_CHARS);
 $answer=filter_input(INPUT_POST,"answer",FILTER_SANITIZE_SPECIAL_CHARS);
-$time=filter_input(INPUT_POST,"time",FILTER_SANITIZE_SPECIAL_CHARS);
-$ansver1=filter_input(INPUT_POST,"ansver1",FILTER_SANITIZE_SPECIAL_CHARS);
-$ansver2=filter_input(INPUT_POST,"ansver2",FILTER_SANITIZE_SPECIAL_CHARS);
-$id_quest_value=filter_input(INPUT_POST,"id_quest_value",FILTER_SANITIZE_SPECIAL_CHARS);
-$id_task=filter_input(INPUT_POST,"id_task",FILTER_SANITIZE_SPECIAL_CHARS);
+$time = filter_input(INPUT_POST, "time", FILTER_SANITIZE_SPECIAL_CHARS);
+$ansver1 = filter_input(INPUT_POST, "ansver1", FILTER_SANITIZE_SPECIAL_CHARS);
+$ansver2 = filter_input(INPUT_POST, "ansver2", FILTER_SANITIZE_SPECIAL_CHARS);
+$id_quest_value = filter_input(INPUT_POST, "id_quest_value", FILTER_SANITIZE_SPECIAL_CHARS);
+$id_task = filter_input(INPUT_POST, "id_task", FILTER_SANITIZE_SPECIAL_CHARS);
 
-$coordinates=$ansver1.'|'.$ansver2;
+$coordinates = $ansver1 . '|' . $ansver2;
 
-$files=$_FILES["file"]["name"] ?? '';
-$tmppath=$_FILES["file"]["tmp_name"] ?? '';
-$uploaddir="../image/task/";
-$now='image/task/';
-$file=$uploaddir.$id_quest_value.'_'.$id_task.'_'.transliterate($files);
-$namefile=$now.$id_quest_value.'_'.$id_task.'_'.transliterate($files);
+$files = $_FILES["file"]["name"] ?? '';
+$tmppath = $_FILES["file"]["tmp_name"] ?? '';
+$uploaddir = "../passing/jobphp/task/";
+$now = 'task/';
+$file = $uploaddir . $id_quest_value . '_' . $id_task . '_' . transliterate($files);
+$namefile = $now . $id_quest_value . '_' . $id_task . '_' . transliterate($files);
 
-if(!$files){
-	$namefile ="";
-}
-else {
-$image = new SimpleImage();
-$image->load($tmppath); // исходная картинка
-$image->scale(99.9);
+if (!$files) {
+    $namefile = "";
+} else {
+    $image = new SimpleImage();
+    $image->load($tmppath); // исходная картинка
+    $image->scale(99.9);
 $image->save($file); // сжатая картинка
 
 }

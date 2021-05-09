@@ -22,6 +22,7 @@ $id_task = $arrayPass['id_task'];
     <script defer src="../js/jquery_3.5.1.min.js"></script>
     <script defer src="../js/jq_cookie.js"></script>
     <script defer src="../js/head_other.js"></script>
+    <script defer src="js/geo.js"></script>
     <script defer src="js/async.js"></script>
 
 </head>
@@ -37,7 +38,7 @@ $id_task = $arrayPass['id_task'];
     </div>
 </header>
 <?php
-if ($id_task != '1') {
+if ($id_task != '4') {
     exit('<label id="error_mess">Задание не соотвествует типу отображаемой страницы или такого задания не существует.<a onclick="javascript:history.back(); return false;">Назад</a></label>');
 } else {
 
@@ -55,6 +56,7 @@ if ($id_task != '1') {
 
     print<<<passing
 <div class='form passing_form'>
+<form>
     <center><h1>$type</h1></center>
     <label>$inf_task_text</label>
     <label>Время на задание: $time минут. </label>
@@ -63,15 +65,20 @@ passing;
         echo '<img class="img_form_task" src="jobphp/' . $file_url . '">';
     }
     print<<<passing
-    <div class="fl_upld">
-			<label style="margin:10px 13%; width: 68%;" class="button_action">
-			<input id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
-	</div>
-     <input type="hidden" id='time' value="$time_now">
-    <input type="hidden" attr="$id_pass">
-    <p></p><p></p><p></p>
+    <input style="margin-left: 12%;" value="" type = "text" name = "ansver1" class="latitude text_width" placeholder = "Координаты широты" pattern = "[\d]\.[\d]{4,}" >
+    <input value="" type = "text" name = "ansver2" class="longitude text_width" placeholder = "Координаты долготы" pattern = "[\d]\.[\d]{4,}" >
+    <input type = "button"  value = "Текущие геоданные" class="button_action find-me btn btn-info btn-block" >
+    <input type="hidden" id='time' value="$time_now">
+    <input type="button" class='button_action get_result' value="Отправить ответ" attr="$id_pass">
+    <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
+    <p class="text_task" style="display: none;" id="hint">$hint</p>
+    <input type="button" class='button_action hint but' value="Показать подсказку">
+    <p></p>
+    <p class="text_task" style="display: none;" id="answer">Широта: $coordinates[0] Долгота: $coordinates[1]</p>
+    <input style="display: none;" type="button" class='button_action answer but' value="Показать ответ">
+    
+</form>
 </div>
-<p></p>
 passing;
 
 }

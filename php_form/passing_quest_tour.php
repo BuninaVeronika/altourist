@@ -15,7 +15,7 @@ if (!empty($email)) {
 }
 $arys = mysqli_fetch_assoc($s_mail);
 $id_t = $arys["id_t"];
-
+$url_result = "";
 $passing = mysqli_query($connect, "SELECT * FROM `passing` WHERE `id_t`='$id_t' AND `id_quests`='$id_quest' ORDER BY id DESC LIMIT 1");
 if (mysqli_num_rows($passing) > 0) {
     $passing_array = mysqli_fetch_assoc($passing);
@@ -32,9 +32,7 @@ if (mysqli_num_rows($passing) > 0) {
             $result_task = true;
             continue;
         } elseif ($result_task === true) {
-            $url_result = url_redirect($id_task_res);
-            $url_result .= '.php?$id_task_passing=' . $id_task_passing_res;
-            echo $url_result;
+            $url_result = 'passing/' . url_redirect($id_task_res) . '.php?id_task_passing=' . $id_task_passing_res;
             break;
         } else {
             continue;
@@ -48,20 +46,15 @@ if (mysqli_num_rows($passing) > 0) {
     $id_task_passing_now = $passing_result['id_task_passing'];
     $id_task_now = $passing_result['id_task'];
 
-    $url_result = url_redirect($id_task_now);
-    $url_result .= '.php?$id_task_passing=' . $id_task_passing_now;
-    echo $url_result;
-
+    $url_result = 'passing/' . url_redirect($id_task_now) . '.php?id_task_passing=' . $id_task_passing_now;
 }
+echo $url_result;
+
 function url_redirect($id_task)
 {
-    $url[] = ['photo', 'text_recognition', 'face_recognition', 'geodata', 'image_comparison', 'qr_photo', 'voice_recognition', 'text'];
-    $i = 1;
-    foreach ($url as $str) {
-        if ($i === $id_task) {
-            return $str;
-            break;
-        }
-        $i++;
-    }
+    $url = ["", "photo", "text_recognition", "face_recognition", "geodata", "image_comparison", "qr_photo", "voice_recognition", "text"];
+
+    $result = $url[$id_task];
+
+    return $result;
 }

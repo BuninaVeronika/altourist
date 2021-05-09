@@ -22,9 +22,29 @@ $id_task = $arrayPass['id_task'];
     <script defer src="../js/jquery_3.5.1.min.js"></script>
     <script defer src="../js/jq_cookie.js"></script>
     <script defer src="../js/head_other.js"></script>
+    <script defer src="js/pico.js"></script>
+    <script defer src="js/job.js"></script>
     <script defer src="js/async.js"></script>
 
 </head>
+<script>
+    function previewFile() {
+        var preview = document.querySelector('#image');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+        setTimeout(function () {
+            button_callback();
+        }, 500);
+    }
+</script>
 <body>
 
 <header id='head_top'>
@@ -37,7 +57,7 @@ $id_task = $arrayPass['id_task'];
     </div>
 </header>
 <?php
-if ($id_task != '1') {
+if ($id_task != '3') {
     exit('<label id="error_mess">Задание не соотвествует типу отображаемой страницы или такого задания не существует.<a onclick="javascript:history.back(); return false;">Назад</a></label>');
 } else {
 
@@ -46,7 +66,7 @@ if ($id_task != '1') {
     $answer = $arrayPass['answer'];
     $hint = $arrayPass['hint'];
     $time = $arrayPass['time'];
-    $coordinates = explode("|", $arrayPass['coordinates']);
+    $coordinates = $arrayPass['coordinates'];
     $file_url = $arrayPass['file_url'];
     $icon_type = mysqli_query($connect, "SELECT * FROM `type_task` WHERE `id_task`='$id_task'");
     $arrayType = mysqli_fetch_assoc($icon_type);
@@ -64,19 +84,26 @@ passing;
     }
     print<<<passing
     <div class="fl_upld">
-			<label style="margin:10px 13%; width: 68%;" class="button_action">
-			<input id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
+			<label style="margin:10px 13%; width: 68%;" class="button_action"><input id="fl_inp" type="file" onchange="previewFile()" name="file" accept="image/*">Сделайте фото, с предпоагаемым коичеством лиц.</label>
 	</div>
-     <input type="hidden" id='time' value="$time_now">
-    <input type="hidden" attr="$id_pass">
-    <p></p><p></p><p></p>
+    <center><canvas id="canvas"  width=500 height=350></canvas></center>
+    <div style="display:none;"><img id="image" src=""></div>
+    <input type="hidden" placeholder="Ответ на вопрос" id="answer_result">
+    <input type="hidden" id='time' value="$time_now">
+    <input type="button" class='button_action get_result' value="Отправить количество" attr="$id_pass">
+    <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
+    <p class="text_task" style="display: none;" id="hint">$hint</p>
+    <input type="button" class='button_action hint but' value="Показать подсказку">
+    <p></p>
+    <p class="text_task" style="display: none;" id="answer">$answer</p>
+    <input style="display: none;" type="button" class='button_action answer but' value="Показать ответ">
 </div>
-<p></p>
 passing;
 
 }
 
 ?>
+<p></p>
 <?php
 footer_block();
 ?>

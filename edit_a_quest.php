@@ -192,7 +192,7 @@ for ($i = 1;
     $answer = $arr_task['answer'];
     $hint = $arr_task['hint'];
     $time = $arr_task['time'];
-    $coordinates = $arr_task['coordinates'];
+    $coordinates = explode("|", $arr_task['coordinates']);
     $file_url = $arr_task['file_url'];
 
     $type_task = mysqli_query($connect, "SELECT * FROM `type_task` WHERE `id_task`='$id_task'");
@@ -285,8 +285,8 @@ top3;
                 <label > Фото пояснение задания </label >
                 <input value="$file_url" type = "file" name = "file" class="button_action" style = "background-color: #89ac76;" placeholder = "Фотоответ к заданию" >
                 <input value="$hint" type = "text" name = "hint" placeholder = "Подсказка к заданию" pattern = "^[?!,-.а-яА-ЯёЁ0-9\s]+$" >
-                <input value="$coordinates" type = "text" name = "ansver1" class="text_width" placeholder = "Координаты широты" pattern = "[\d]\.[\d]{4,}" >
-                <input value="$coordinates" type = "text" name = "ansver2" class="text_width" placeholder = "Координаты долготы" pattern = "[\d]\.[\d]{4,}" >
+                <input value="$coordinates[0]" type = "text" name = "ansver1" class="text_width" placeholder = "Координаты широты" pattern = "[\d]\.[\d]{4,}" >
+                <input value="$coordinates[1]" type = "text" name = "ansver2" class="text_width" placeholder = "Координаты долготы" pattern = "[\d]\.[\d]{4,}" >
                 <input type = "button"  onclick = "geo_teg($i)" value = "Текущие геоданные" class="button_action" >
                 <input value="$time" type = "text" name = "time" class="text_width" placeholder = "Время прохождения в минутах" pattern = "[0-9]{1,3}" >
                 <label > Каждое задание необходимо сохранять отдельно </label >
