@@ -80,7 +80,9 @@ if ($id_task != '5') {
     <div class="fl_upld">
 			<label style="margin:10px 13%; width: 68%;" class="button_action"><input id="fl_inp" name="file2" type="file" name="file" accept="image/*">Фото для сравнения</label>
 	</div>
-    <input type="hidden" id='time' value="$time_now">
+	 <input type="hidden" id='passing' value="$id_pass">
+     <input type="hidden" id='time' value="$time_now">
+     <input type="hidden" id='id_quests' value="$id_quests">
     <input type="hidden" name="file1" value="$file_url">
     <input type="button" onclick="acti()" class='button_action get_result' value="Сравнить изображения" attr="$id_pass">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">

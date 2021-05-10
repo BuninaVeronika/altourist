@@ -22,7 +22,7 @@ if (mysqli_num_rows($passing) > 0) {
     $id_task_passing = $passing_array['id_task_passing'];
     $id_quests = $passing_array['id_quests'];
 
-    $passing_arr = mysqli_query($connect, "SELECT `id_task_passing`, `id_task` FROM `task` WHERE `id_task_passing`='$id_task_passing'");
+    $passing_arr = mysqli_query($connect, "SELECT `id_task_passing`, `id_task` FROM `task` WHERE `id_quests`='$id_quest'");
 
     for ($i = 0; $i < mysqli_num_rows($passing_arr); $i++) {
         $passing_result = mysqli_fetch_assoc($passing_arr);

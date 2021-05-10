@@ -25,6 +25,7 @@ $id_task = $arrayPass['id_task'];
     <script defer src="js/async.js"></script>
 
 </head>
+
 <body>
 
 <header id='head_top'>
@@ -65,10 +66,12 @@ passing;
     print<<<passing
     <div class="fl_upld">
 			<label style="margin:10px 13%; width: 68%;" class="button_action">
-			<input id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
+			<input class="photo_add" id="fl_inp" type="file" name="file" accept="image/*">Сделать фото</label>
 	</div>
+
+	 <input type="hidden" id='passing' value="$id_pass">
      <input type="hidden" id='time' value="$time_now">
-    <input type="hidden" attr="$id_pass">
+     <input type="hidden" id='id_quests' value="$id_quests">
     <p></p><p></p><p></p>
 </div>
 <p></p>

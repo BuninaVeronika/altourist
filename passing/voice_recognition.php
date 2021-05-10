@@ -92,7 +92,9 @@ passing;
     <label id='text' class="text_task">Ключевая фраза</label>
     <input style="width: 90%;" type="hidden" placeholder="Ответ на вопрос" id="answer_result">
     <input type="button" class='button_action but' onclick=" startRecognizer()" name="" value="Распознать фразу">
-     <input type="hidden" id='time' value="$time_now">
+    <input type="hidden" id='passing' value="$id_pass">
+    <input type="hidden" id='time' value="$time_now">
+    <input type="hidden" id='id_quests' value="$id_quests">
     <input type="button" class='button_action get_result' value="Отправить ответ" attr="$id_pass">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>

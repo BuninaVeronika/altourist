@@ -89,8 +89,10 @@ passing;
     <center><canvas id="canvas"  width=500 height=350></canvas></center>
     <div style="display:none;"><img id="image" src=""></div>
     <input type="hidden" placeholder="Ответ на вопрос" id="answer_result">
-    <input type="hidden" id='time' value="$time_now">
-    <input type="button" class='button_action get_result' value="Отправить количество" attr="$id_pass">
+	 <input type="hidden" id='passing' value="$id_pass">
+     <input type="hidden" id='time' value="$time_now">
+     <input type="hidden" id='id_quests' value="$id_quests">
+    <input type="button" class='button_action get_result_face' value="Отправить количество">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>
     <input type="button" class='button_action hint but' value="Показать подсказку">

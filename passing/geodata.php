@@ -68,7 +68,9 @@ passing;
     <input style="margin-left: 12%;" value="" type = "text" name = "ansver1" class="latitude text_width" placeholder = "Координаты широты" pattern = "[\d]\.[\d]{4,}" >
     <input value="" type = "text" name = "ansver2" class="longitude text_width" placeholder = "Координаты долготы" pattern = "[\d]\.[\d]{4,}" >
     <input type = "button"  value = "Текущие геоданные" class="button_action find-me btn btn-info btn-block" >
-    <input type="hidden" id='time' value="$time_now">
+	 <input type="hidden" id='passing' value="$id_pass">
+     <input type="hidden" id='time' value="$time_now">
+     <input type="hidden" id='id_quests' value="$id_quests">
     <input type="button" class='button_action get_result' value="Отправить ответ" attr="$id_pass">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>
