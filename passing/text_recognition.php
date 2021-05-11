@@ -113,7 +113,6 @@ passing;
 	 <input type="hidden" id='passing' value="$id_pass">
      <input type="hidden" id='time' value="$time_now">
      <input type="hidden" id='id_quests' value="$id_quests">
-     <input type="hidden" id='check' value="0">
     <input style="margin-left: 25%;" type="button" class='button_action get_result_text' value="Отправить ответ">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>

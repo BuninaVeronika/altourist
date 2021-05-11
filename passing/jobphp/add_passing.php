@@ -27,6 +27,7 @@ if ($dostup_count == 0 && $role_admin == 0) {
 
 
 $add_quest = mysqli_query($connect, "INSERT INTO `passing`(`id_t`, `id_task_passing`, `time_start`, `time_end`, `id_quests`) VALUES ('$id_t','$id_task_passing','$time','$time_end','$id_quests')");
+$result_task = false;
 if (!$add_quest) {
     exit ('Неверный запрос: ' . mysqli_error());
 } else {
@@ -39,7 +40,7 @@ if (!$add_quest) {
         if ($id_task_passing === $id_task_passing_res) {
             $result_task = true;
             continue;
-        } elseif ($result_task === true) {
+        } elseif ($result_task == true) {
             $url_result = url_redirect($id_task_res) . '.php?id_task_passing=' . $id_task_passing_res;
             break;
         } else {

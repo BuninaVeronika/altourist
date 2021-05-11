@@ -84,11 +84,11 @@ passing;
     }
     print<<<passing
     <div class="fl_upld">
-			<label style="margin:10px 13%; width: 68%;" class="button_action"><input id="fl_inp" type="file" onchange="previewFile()" name="file" accept="image/*">Сделайте фото, с предпоагаемым коичеством лиц.</label>
+			<label style="margin:10px 13%; width: 68%;" class="button_action"><input id="fl_inp" type="file" onchange="previewFile()" name="file" accept="image/*">Сделайте фото, с предполагаемым количеством лиц.</label>
 	</div>
     <center><canvas id="canvas"  width=500 height=350></canvas></center>
     <div style="display:none;"><img id="image" src=""></div>
-    <input type="hidden" placeholder="Ответ на вопрос" id="answer_result">
+    <input type="hidden" class="face_result" placeholder="Ответ на вопрос" id="answer_result">
 	 <input type="hidden" id='passing' value="$id_pass">
      <input type="hidden" id='time' value="$time_now">
      <input type="hidden" id='id_quests' value="$id_quests">

@@ -37,7 +37,13 @@ $id_task = $arrayPass['id_task'];
 
         })
             .done(function (data) {
-                $("#error").html(data);
+                $("#answer_result").html(data);
+                if (data == '1') {
+                    alert('Успешное сходство фотографий!');
+                    push_passing();
+                } else {
+                    alert('Попробуйте сменить ракурс или найти другой объект!');
+                }
             });
     }
 </script>
@@ -75,16 +81,16 @@ if ($id_task != '5') {
     <label>$inf_task_text</label>
     <label>Время на задание: $time минут. </label>
 
-	<form method="post" enctype="multipart/form-data" id="action_form">
-	<span style='font-size: 35px;' id='error'></span>  
+	<form method="post" enctype="multipart/form-data" id="action_form">  
     <div class="fl_upld">
 			<label style="margin:10px 13%; width: 68%;" class="button_action"><input id="fl_inp" name="file2" type="file" name="file" accept="image/*">Фото для сравнения</label>
 	</div>
+	<input type="hidden" placeholder="Ответ на вопрос" id="answer_result">
 	 <input type="hidden" id='passing' value="$id_pass">
      <input type="hidden" id='time' value="$time_now">
      <input type="hidden" id='id_quests' value="$id_quests">
     <input type="hidden" name="file1" value="$file_url">
-    <input type="button" onclick="acti()" class='button_action get_result' value="Сравнить изображения" attr="$id_pass">
+    <input type="button" onclick="acti()" class='button_action get_result' value="Сравнить изображения">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>
     <input type="button" class='button_action hint but' value="Показать подсказку">

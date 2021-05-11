@@ -43,6 +43,7 @@ $id_task = $arrayPass['id_task'];
                 console.log('Распознавание завершилось.');
                 var test = document.getElementById('outputData').innerText;
                 $('#text').val(test);
+                $('#answer_result').val(test);
             };
 
             recognition.start();
@@ -95,7 +96,7 @@ passing;
     <input type="hidden" id='passing' value="$id_pass">
     <input type="hidden" id='time' value="$time_now">
     <input type="hidden" id='id_quests' value="$id_quests">
-    <input type="button" class='button_action get_result' value="Отправить ответ" attr="$id_pass">
+    <input type="button" class='button_action get_result_face' value="Отправить ответ">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>
     <input type="button" class='button_action hint but' value="Показать подсказку">

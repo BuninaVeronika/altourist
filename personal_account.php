@@ -50,21 +50,36 @@ global $connect;
 
     ?>
 
-    <a href='php_form/mailing_email.php' style="width: 90%; text-align: center; float: left;">Отказаться от рассылок на почту</a>
+    <a href='php_form/mailing_email.php' style="width: 90%; text-align: center; float: left;">Отказаться от рассылок на
+        почту</a>
     <br>
     <input type="button" class='button_action' onclick='close_account()' value="Выход" name="">
     <a href='account_edit.php'><input type="button" class='button_action' value="Редактировать профиль" name=""></a>
 
-    <?if($number_confirmation ==1):?><a href='add_a_quest.php'><input type="button" class='button_action' name="" value="Добавить квест"></a><?endif;?>
+    <? if ($number_confirmation == 1): ?><a href='add_a_quest.php'><input type="button" class='button_action' name=""
+                                                                          value="Добавить квест"></a><? endif; ?>
 </div>
-<div class="form">Текущий в прохождении квест</div>
+<div class="form">
+    <h1>Текущий квест</h1>
+    <?php
+    $passing_now = mysqli_query($connect, "SELECT * FROM `passing` WHERE `id_t`='$id_t' ORDER BY `id` ASC LIMIT 1");
+    $array_pass = mysqli_fetch_assoc($passing_now);
+    $id_quests_now = $array_pass['id_quests'];
+    echo $id_quests_now;
+
+    ?>
+</div>
 
 <section class="lk_section_block" style="width: 100%; float:left;">
 
     <div class="nav_section">
-        <a <?if($_GET['qsection']=='o'):?> style="background: #4D774E;" <?endif;?> href="/personal_account.php?qsection=o"><h1>Отложенные квесты</h1></a>
-        <?if($email_confirmation==1):?><a <?if($_GET['qsection']=='p'):?> style="background: #4D774E;" <?endif;?> href="/personal_account.php?qsection=p"><h1>Квесты в прохождении</h1></a><?endif;?>
-        <a <?if($_GET['qsection']=='s'):?> style="background: #4D774E;" <?endif;?> href="/personal_account.php?qsection=s"><h1>Купленные квесты</h1></a>
+        <a <? if ($_GET['qsection'] == 'o'): ?> style="background: #4D774E;" <? endif; ?>
+                href="/personal_account.php?qsection=o"><h1>Отложенные квесты</h1></a>
+        <? if ($email_confirmation == 1): ?>
+            <a <? if ($_GET['qsection'] == 'p'): ?> style="background: #4D774E;" <? endif; ?>
+            href="/personal_account.php?qsection=p"><h1>Квесты в прохождении</h1></a><? endif; ?>
+        <a <? if ($_GET['qsection'] == 's'): ?> style="background: #4D774E;" <? endif; ?>
+                href="/personal_account.php?qsection=s"><h1>Купленные квесты</h1></a>
     </div>
 
     <?php

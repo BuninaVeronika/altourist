@@ -14,20 +14,49 @@ $(".photo_add").on("input", function () {
     push_passing();
 });
 $(".get_result_text").on("click", function () {
-    if ($("#check").prop("value") === 1) {
-        push_passing();
-    } else {
-        $.post("jobphp/text_recognition.php",
-            {
-                passing: $("#passing").prop("value"),
-                answer_result: $("#answer_result").prop("value"),
-            },
-            function (data) {
-                if (data == "true") {
-                    $("#answer_result").val("1");
-                } else {
-                    alert(/*"Ответ неправильный, попробуйте снова."+*/data);
-                }
-            });
-    }
+
+    $.post("jobphp/text_recognition.php",
+        {
+            passing: $("#passing").prop("value"),
+            answer_result: $("#answer_result").prop("value"),
+        },
+        function (data) {
+            if (data == "true") {
+                push_passing();
+            } else {
+                alert(data);
+            }
+        });
 });
+$(".get_result_face").on("click", function () {
+
+    $.post("jobphp/face_recognition.php",
+        {
+            passing: $("#passing").prop("value"),
+            answer_result: $("#answer_result").prop("value"),
+        },
+        function (data) {
+            if (data == "true") {
+                push_passing();
+            } else {
+                alert(data);
+            }
+        });
+});
+$(".get_result_geo").on("click", function () {
+
+    $.post("jobphp/geodata.php",
+        {
+            passing: $("#passing").prop("value"),
+            answer_result1: $("#ansver1").prop("value"),
+            answer_result2: $("#ansver2").prop("value"),
+        },
+        function (data) {
+            if (data == "true") {
+                push_passing();
+            } else {
+                alert(data);
+            }
+        });
+});
+
