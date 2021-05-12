@@ -47,6 +47,9 @@ if (!$add_quest) {
             continue;
         }
     }
+    if ($url_result == '') {
+        $url_result = '../personal_account.php';
+    }
     echo $url_result;
 }
 function url_redirect($id_task)

@@ -16,6 +16,7 @@ if (!empty($email)) {
 $arys = mysqli_fetch_assoc($s_mail);
 $id_t = $arys["id_t"];
 $url_result = "";
+$result_task = '';
 $passing = mysqli_query($connect, "SELECT * FROM `passing` WHERE `id_t`='$id_t' AND `id_quests`='$id_quest' ORDER BY id DESC LIMIT 1");
 if (mysqli_num_rows($passing) > 0) {
     $passing_array = mysqli_fetch_assoc($passing);
@@ -31,7 +32,7 @@ if (mysqli_num_rows($passing) > 0) {
         if ($id_task_passing === $id_task_passing_res) {
             $result_task = true;
             continue;
-        } elseif ($result_task === true) {
+        } elseif ($result_task == true) {
             $url_result = 'passing/' . url_redirect($id_task_res) . '.php?id_task_passing=' . $id_task_passing_res;
             break;
         } else {

@@ -62,10 +62,50 @@ global $connect;
 <div class="form">
     <h1>Текущий квест</h1>
     <?php
-    $passing_now = mysqli_query($connect, "SELECT * FROM `passing` WHERE `id_t`='$id_t' ORDER BY `id` ASC LIMIT 1");
+    $passing_now = mysqli_query($connect, "SELECT * FROM `passing` WHERE `id_t`='$id_t' ORDER BY `id` DESC LIMIT 1");
     $array_pass = mysqli_fetch_assoc($passing_now);
     $id_quests_now = $array_pass['id_quests'];
-    echo $id_quests_now;
+    $quests_pass = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests`='$id_quests_now'");
+    $arr_pas = mysqli_fetch_assoc($quests_pass);
+    $id_quests_pas = $arr_pas["id_quests"];
+    $quests_name_pas = $arr_pas["quests_name"];
+    $text_quests_pas = $arr_pas["text_quests"];
+    $reiting_pas = $arr_pas["reiting"];
+    $file_pas = $arr_pas["file"];
+    $age_pas = $arr_pas["age"];
+    $sale_pas = $arr_pas["sale"];
+    $time_pas = $arr_pas["time"];
+    $complication_pas = $arr_pas["complication"];
+    $distance_pas = $arr_pas["distance"];
+    $id_t_deferred_pas = $arr_pas["id_t"];
+    $status_pas = $arr_pas["status"];
+    $technical_pas = $arr_pas["technical"];
+    $id_location_pas = $arr_pas["id_location"];
+    $id_section_pas = $arr_pas["id_section"];
+    $section_pas = mysqli_query($connect, "SELECT * FROM `section` WHERE `id_section`='$id_section_pas'");
+    $array_pas = mysqli_fetch_assoc($section_pas);
+    $section_name_pas = $array_pas["section_name"];
+    $location_section_pas = mysqli_query($connect, "SELECT * FROM `location` WHERE `id_location`='$id_location_pas'");
+    $array_location_pas = mysqli_fetch_assoc($location_section_pas);
+    $location_name_pas = $array_location_pas["location_name"];
+    $task_c = mysqli_query($connect, "SELECT * FROM `task` WHERE `id_quests`='$id_quests_pas'");
+    $task_count_pas = mysqli_num_rows($task_c);
+    print<<<pass
+    <a href="quest_tour.php?id_quest=$id_quests_pas"><img style='width:80%; margin: 10px 10%; ' src='$file_pas' /></a>
+	<div class="right_info" style="width: 100%;">
+    <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication_pas</p>
+	<a href="quest_tour.php?id_quest=$id_quests_pas"><h1 style="color: #F1B24A;">$quests_name_pas</h1></a>
+	<p>Коичество: $task_count_pas</p>	
+	<a href="section_quest.php?section=$id_section_pas"><p style="width: 250px;">$section_name_pas</p></a>
+	<a href="section_quest.php?location=$id_location_pas"><p style="width: 250px;">$location_name_pas</p></a>
+		
+	<p>$time_pas мин.</p>
+	<p>$distance_pas км.</p>
+	<a href="quest_tour.php?id_quest=$id_quests_pas"><input style="float: right; margin-top: -5%;" class='button_action' type="button" name="quest_info" value="Подробнее"></a>
+	
+	</div>
+pass;
+
 
     ?>
 </div>
@@ -142,52 +182,69 @@ section_quest;
     elseif($_GET['qsection']=='p') {
         if($email_confirmation ==1) {
 
-            /*  $deferred_quest = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests` IN (SELECT `id_quests` FROM `deferred_quests` WHERE `id_t`='$id_t')");
-              $deferred_quests_count = mysqli_num_rows($deferred_quests);
-              if (!$deferred_quests) {
-                  exit ('Неверный запрос: ' . mysqli_error($connect));
-              } else {
-                  for ($i = 0; $i < $deferred_quests_count; $i++) {
+            $passing = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests` IN (SELECT `id_quests` FROM `passing` WHERE `id_t`='$id_t' GROUP BY `id_quests`)");
+            $passing_count = mysqli_num_rows($passing);
+            if (!$passing) {
+                exit ('Неверный запрос: ' . mysqli_error($connect));
+            } else {
+                for ($i = 0; $i < $passing_count; $i++) {
+                    $arr_passing = mysqli_fetch_assoc($passing);
+                    $id_quests_passi = $arr_passing["id_quests"];
+                    $quests_name_passi = $arr_passing["quests_name"];
+                    $text_quests_passi = $arr_passing["text_quests"];
+                    $reiting_passi = $arr_passing["reiting"];
+                    $file_passi = $arr_passing["file"];
+                    $age_passi = $arr_passing["age"];
+                    $sale_passi = $arr_passing["sale"];
+                    $time_passi = $arr_passing["time"];
+                    $complication_passi = $arr_passing["complication"];
+                    $distance_passi = $arr_passing["distance"];
+                    $id_t_deferred_passi = $arr_passing["id_t"];
+                    $status_passi = $arr_passing["status"];
+                    $technical_passi = $arr_passing["technical"];
+                    $id_location_passi = $arr_passing["id_location"];
+                    $id_section_passi = $arr_passing["id_section"];
+                    $section_purchases = mysqli_query($connect, "SELECT * FROM `section` WHERE `id_section`='$id_section_passi'");
+                    $array_section = mysqli_fetch_assoc($section_purchases);
+                    $section_name_purchases = $array_section["section_name"];
+                    $location_section_purchases = mysqli_query($connect, "SELECT * FROM `location` WHERE `id_location`='$id_location_passi'");
+                    $array_location_purchases = mysqli_fetch_assoc($location_section_purchases);
+                    $location_name_purchases = $array_location_purchases["location_name"];
+                    $task_c = mysqli_query($connect, "SELECT * FROM `task` WHERE `id_quests`='$id_quests_passi'");
+                    $task_count = mysqli_num_rows($task_c);
+                    print<<<quest_purchases
 
-                      $arr_def = mysqli_fetch_assoc($deferred_quests);
-                      $id_quests = $arr_def["id_quests"];
-                      $quests_name = $arr_def["quests_name"];
-                      $text_quests = $arr_def["text_quests"];
-                      $reiting = $arr_def["reiting"];
-                      $file = $arr_def["file"];
-                      $age = $arr_def["age"];
-                      $sale = $arr_def["sale"];
-                      $time = $arr_def["time"];
-                      $complication = $arr_def["complication"];
-                      $distance = $arr_def["distance"];
-                      $id_t_deferred = $arr_def["id_t"];
-                      $status = $arr_def["status"];
-                      $technical = $arr_def["technical"];
-                      $id_location = $arr_def["id_location"];
-                      print<<<section_quest
-
-          <div  class='form section_quest'>
-          <section class="left_info">
-          <img  src='$file'/>
-          <input class='button_check put_aside' id="button_check" id_quest='$id_quests'  type="button" name="quest_user" value="&#xe806;">
-          <input style="width: 200px;" class='purchase button_action'  id_quest='$id_quests' type="button" name="quest_info" value="Купить">
-          </section>
-          <div class="right_info">
-          <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication</p>
-          <a href="quest_tour.php?id_quest=$id_quests"><h1>$quests_name</h1></a>
-          <label>$text_quests</label>
-          <p title="Стоимость" class="icon_list">&#xf158;</p><p>$sale</p>
-          <p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time </p><p>мин.</p>
-          <p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance </p><p>км.</p>
-
-          <a href="quest_tour.php?id_quest=$id_quests"><input class='button_action' type="button" name="quest_info" value="Подробнее"></a>
-          </div>
-          </div>
-
-      section_quest;
-                  }
+    <div  class='form section_quest'>
+	<section class="left_info" >
+	<img  src='$file_passi'/>
+	<!--написать на кнопку метод-->
+quest_purchases;
+                    if ($email_confirmation == 1) {
+                        print<<<quest_purchases3
+<input style='width: 280px;' class='passing_quest_tour button_action'  id_quest='$id_quests_passi' type='button' name='quest_info' value='Продолжить прохождение'>
+<p style='z-index: 15;position: relative; float:left; width: 100%;'>Уровень прохождения</p>
+quest_purchases3;
+                    }
+                    print<<<quest_purchases2
+	</section>
+	<div class="right_info" >
+    <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication_passi</p>
+	<a href="quest_tour.php?id_quest=$id_quests_passi"><h1>$quests_name_passi</h1></a>
+	<p title="Количество заданий квеста" class="icon_list">&#xe801;</p><p>$task_count</p>	
+	<a href="section_quest.php?section=$id_section_passi"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 250px;">$section_name_purchases</p></a>
+	<a href="section_quest.php?location=$id_location_passi"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 250px;">$location_name_purchases</p></a>
+		
+	<p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time_passi </p><p>мин.</p>
+	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance_passi </p><p>км.</p>
+	
+	<a href="quest_tour.php?id_quest=$id_quests_passi"><input class='button_action' type="button" name="quest_info" value="Подробнее"></a>
+	</div>
+	
+	</div>
+quest_purchases2;
+                }
               }
-            */
+
         }
     }
     elseif($_GET['qsection']=='s') {
