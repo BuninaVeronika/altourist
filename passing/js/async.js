@@ -6,8 +6,7 @@ function push_passing() {
             id_task_passing: $("#passing").prop("value"),
         },
         function (data) {
-            alert(data);/*
-            window.location.replace(data);*/
+            window.location.replace(data);
         });
 }
 
