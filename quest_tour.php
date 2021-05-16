@@ -105,22 +105,29 @@ print<<<section_quest
 	<input class='purchase button_action'  id_quest='$id_quests' type="button" name="quest_info" value="Купить">
 section_quest;
 
-$cooki_hash_s=$_COOKIE['cooki_hash'] ?? '';
-if(empty($cooki_hash_s)){$cooki_hash_s=$_SESSION['cooki_hash']?? '';}
+$cooki_hash_s = $_COOKIE['cooki_hash'] ?? '';
+if (empty($cooki_hash_s)) {
+    $cooki_hash_s = $_SESSION['cooki_hash'] ?? '';
+}
 $account = mysqli_query($connect, "SELECT * FROM `user_tourist` WHERE `cookies_hash`='$cooki_hash_s'");
 $array = mysqli_fetch_assoc($account);
 $status_edit = $array["role_admin"];
-	if($status_edit!==1){
-        ?>
-	    <a href="edit_a_quest.php?id_quest=<?=$id_quests?>"><input style="margin-left: 13%; margin-top:20px;" class="button_action" type="button" name="quest_info" value="Редактировать"></a>
-        <input style="margin-left: 13%; margin-top:20px; background: #4D774E;" class="button_action quest_check" type="button" name="quest_info" id_quest='<?=$id_quests?>' value="Подтвердить квест">
-        <input style="margin-left: 13%; margin-top:20px; background: #F1B24A; color: white;" class="button_action quest_fail" type="button" name="quest_info" id_quest='<?=$id_quests?>' value="Отклонить квест">
+if ($status_edit == 1) {
+    ?>
+    <a href="edit_a_quest.php?id_quest=<?= $id_quests ?>"><input style="margin-left: 13%; margin-top:20px;"
+                                                                 class="button_action" type="button" name="quest_info"
+                                                                 value="Редактировать"></a>
+    <input style="margin-left: 13%; margin-top:20px; background: #4D774E;" class="button_action quest_check"
+           type="button" name="quest_info" id_quest='<?= $id_quests ?>' value="Подтвердить квест">
+    <input style="margin-left: 13%; margin-top:20px; background: #F1B24A; color: white;"
+           class="button_action quest_fail" type="button" name="quest_info" id_quest='<?= $id_quests ?>'
+           value="Отклонить квест">
 
-        <?
+    <?
 }
-	 echo ('</div>');
-	
-     echo ('</div>');
+echo('</div>');
+
+echo('</div>');
 
     
 
