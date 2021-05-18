@@ -19,7 +19,7 @@ if (!empty($cooki_hash)) {
     die("Ошибка доступа пользователя!");
 }
 
-$dostup = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_t`='$id_t' AND `id_quests`='$id_quests' AND `status`='0'");
+$dostup = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_quests`='$id_quests' AND `status`='1'");
 $dostup_count = mysqli_num_rows($dostup);
 if ($dostup_count == 0 && $role_admin == 0) {
     exit('У вас нет доступа к данному квесту или редактирование невозможно, потому модератор утвердил его');
