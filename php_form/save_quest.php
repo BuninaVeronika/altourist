@@ -50,8 +50,10 @@ if (!$add_quest) {
         exit ('Неверный запрос: ' . mysqli_error($connect));
     }
 else{
-	$quest = mysqli_query($connect,"SELECT * FROM `quests_altrst` ORDER BY `id_quests` DESC LIMIT 1");
-	$ar=mysqli_fetch_assoc($quest);
-	$id_quests=$ar["id_quests"];
+    $quest = mysqli_query($connect, "SELECT * FROM `quests_altrst` ORDER BY `id_quests` DESC LIMIT 1");
+    $ar = mysqli_fetch_assoc($quest);
+    $id_quests = $ar["id_quests"];
+    $data_time = date('Y/m/d H:i:s');
+    $put_aside = mysqli_query($connect, "INSERT INTO `quest_purchases`(`id_t`, `id_quests`, `data_price`) VALUES ('$id_t','$id_quests','$data_time')");
 }
 echo $id_quests;

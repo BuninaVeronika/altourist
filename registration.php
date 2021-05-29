@@ -2,24 +2,25 @@
 include_once('include/include.php');
 header_block();
 ?>
-	
-	
-	<div class='form' id='avtoriz'>
-		<h1>Пройти авторизацию</h1>
-		<form id='avtrz'>
-			<input type="text"  name="email" required placeholder="Email" pattern="\S+@[a-z]+.[a-z]+">
-			<input type="password"  name="password" required placeholder="Пароль" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-			<a href=''>восстановить пароль аккаунта</a>
-			<input type="button"  onclick='avtrz()' value="Авторизоваться" class="button_action">
-			
-		</form>
-	</div>
 
 
-	<div class='form' id='reg'>
-		<h1>Регистрация на сайте</h1>
-		<form id='rgstrz'>
-			<input type="text" name="name" id='name' placeholder="Имя: Неутомимый турист" pattern="^[А-Яа-яЁё\s]+$">
+<div class='form' id='avtoriz'>
+    <h1>Пройти авторизацию</h1>
+    <form id='avtrz'>
+        <input type="text" name="email" required placeholder="Email" pattern="\S+@[a-z]+.[a-z]+">
+        <input type="password" name="password" required placeholder="Пароль"
+               pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+        <!--<a href=''>восстановить пароль аккаунта</a>-->
+        <input type="button" onclick='avtrz()' value="Авторизоваться" class="button_action">
+
+    </form>
+</div>
+
+
+<div class='form' id='reg'>
+    <h1>Регистрация на сайте</h1>
+    <form id='rgstrz'>
+        <input type="text" name="name" id='name' placeholder="Имя: Неутомимый турист" pattern="^[А-Яа-яЁё\s]+$">
 			<input type="text" name="email" required placeholder="Email: NeytomimyiTurist@tour.com" pattern="\S+@[a-z]+.[a-z]+">
 			<input type="password" class='pass' name="password" required placeholder="Пароль: ******" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
 			<input type="password" class='pass' name="repassword" required placeholder="Подтверждение пароля: ******" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">

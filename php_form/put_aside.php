@@ -1,19 +1,20 @@
 <?php
 session_start();
-$id_quest=filter_input(INPUT_POST,"id_quest",FILTER_SANITIZE_SPECIAL_CHARS);
+$id_quest = filter_input(INPUT_POST, "id_quest", FILTER_SANITIZE_SPECIAL_CHARS);
 include_once("../include/bd.php");
 global $connect;
 
-$email=$_COOKIE["email"];
-$cooki_hash_s=$_SESSION['cooki_hash'];
-if(!empty($email)){
-    $s_mail = mysqli_query($connect,"SELECT `id_t` FROM `user_tourist` WHERE `email_t`='$email'");
+if (!empty($_COOKIE["email"])) {
+    $email = $_COOKIE["email"];
+    $cooki_hash_s = $_SESSION['cooki_hash'];
 }
-elseif(!empty($cooki_hash_s)){
-    $s_mail = mysqli_query($connect,"SELECT `id_t` FROM `user_tourist` WHERE `cookies_hash`='$cooki_hash_s'");
-}
-else{
- exit("Авторизуйтесь или Зарегистрируйтесь на сайте, чтобы иметь возможность выбирать квесты.");
+
+if (!empty($email)) {
+    $s_mail = mysqli_query($connect, "SELECT `id_t` FROM `user_tourist` WHERE `email_t`='$email'");
+} elseif (!empty($cooki_hash_s)) {
+    $s_mail = mysqli_query($connect, "SELECT `id_t` FROM `user_tourist` WHERE `cookies_hash`='$cooki_hash_s'");
+} else {
+    exit("Авторизуйтесь или Зарегистрируйтесь на сайте, чтобы иметь возможность выбирать квесты.");
 }
 $arys=mysqli_fetch_assoc($s_mail);
 $id_t=$arys["id_t"];

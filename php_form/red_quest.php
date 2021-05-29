@@ -38,17 +38,16 @@ $dostup=mysqli_query($connect,"SELECT * FROM `quests_altrst` WHERE `id_t`='$id_t
 $dostup_count=mysqli_num_rows($dostup);
 if($dostup_count==0 && $role_admin==0){exit('У вас нет доступа к данному квесту или редактирование невозможно, потому модератор утвердил его');}
 
-if(!$files){
-	$namefile ="";
-}
-else {
-$image = new SimpleImage();
-$image->load($tmppath); // исходная картинка
-$image->scale(99.9);
-$image->save($file); // сжатая картинка
+if (empty($tmppath)) {
+    $arr = mysqli_fetch_assoc($dostup);
+    $namefile = $arr['file'];
+} else {
+    $image = new SimpleImage();
+    $image->load($tmppath); // исходная картинка
+    $image->scale(99.9);
+    $image->save($file); // сжатая картинка
 
 }
-
 $add_quest = mysqli_query($connect,"UPDATE `quests_altrst` SET `quests_name`='$name',`text_quests`='$text',`file`='$namefile',`age`='$v',`sale`='$s',`time`='$t',`complication`='$h',`id_location`='$location',`id_section`='$section',`distance`='$distance',`man`='$man' WHERE `id_quests`='$id_quest_value' ");
 if (!$add_quest) {
         exit ('Неверный запрос: ' . mysqli_error($connect));

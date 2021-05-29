@@ -70,7 +70,7 @@ else {
 
 //создаем данные в сессии на случай, если у пользователя выключены куки файлы
 
-$userreg= $connect->query("INSERT INTO `user_tourist`(`name_t`, `email_t`, `password_t`, `number_t`, `cookies_hash`, `rating`, `avatar`,`email_confirmation`,`number_confirmation`, `date_of_visit`) VALUES ('$name','$email','$hash','$number','$cooki_hash','0','$namefile','0','0','$date')");
+$userreg = $connect->query("INSERT INTO `user_tourist`(`name_t`, `email_t`, `password_t`, `number_t`, `cookies_hash`, `rating`, `avatar`,`email_confirmation`,`number_confirmation`, `date_of_visit`) VALUES ('$name','$email','$hash','$number','$cooki_hash','0','$namefile','1','1','$date')");
 
 if (!$userreg) {
     exit ('Неверный запрос: ' . mysqli_error($connect));
