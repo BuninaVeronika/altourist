@@ -291,6 +291,13 @@ quest_purchases2;
                 $location_name_purchases = $array_location_purchases["location_name"];
                 $task_c = mysqli_query($connect, "SELECT * FROM `task` WHERE `id_quests`='$id_quests_purchases'");
                 $task_count = mysqli_num_rows($task_c);
+
+                $passing_user = mysqli_query($connect, "SELECT * FROM `passing` WHERE `id_t`='$id_t' AND `id_quests`='$id_quests_purchases'");
+                $passing_count_user = mysqli_num_rows($passing_user);
+                $passing_quest = mysqli_query($connect, "SELECT * FROM `task` WHERE  `id_quests`='$id_quests_purchases'");
+                $passing_count_quest = mysqli_num_rows($passing_quest);
+                $count_proc = round((100 / $passing_count_quest) * $passing_count_user) . '%';
+
                 print<<<quest_purchases
 
     <div  class='form section_quest'>
@@ -301,7 +308,7 @@ quest_purchases;
                 if ($email_confirmation == 1) {
                     print<<<quest_purchases3
 <input style='width: 280px;' class='passing_quest_tour button_action'  id_quest='$id_quests_purchases' type='button' name='quest_info' value='Начать прохождение'>
-<p style='z-index: 15;position: relative; float:left; width: 100%;'>Уровень прохождения</p>
+<p style='z-index: 15;position: relative; float:left; width: 100%;'>Пройден на $count_proc</p>
 quest_purchases3;
                 }
                 print<<<quest_purchases2
