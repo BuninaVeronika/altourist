@@ -29,6 +29,7 @@ global $connect;
         $number = $array["number_t"];
         $rating = $array["rating"];
         $avatar = $array["avatar"];
+        $role_admin = $array["role_admin"];
         $email_confirmation = $array["email_confirmation"];
         $number_confirmation = $array["number_confirmation"];
         //C выводом поработать
@@ -100,7 +101,7 @@ if (mysqli_num_rows($passing_now) !== 0) {
 	<div class="right_info" style="width: 100%;">
     <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication_pas</p>
 	<a href="quest_tour.php?id_quest=$id_quests_pas"><h1 style="color: #F1B24A;">$quests_name_pas</h1></a>
-	<p>Коичество: $task_count_pas</p>	
+	<p>Количество: $task_count_pas</p>	
 	<a href="section_quest.php?section=$id_section_pas"><p style="width: 250px;">$section_name_pas</p></a>
 	<a href="section_quest.php?location=$id_location_pas"><p style="width: 250px;">$location_name_pas</p></a>
 		
@@ -171,11 +172,11 @@ pass;
     <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication</p>
 	<a href="quest_tour.php?id_quest=$id_quests"><h1>$quests_name</h1></a>
 	
-	<a href="section_quest.php?section=$id_section"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 250px;">$section_name</p></a>
-	<a href="section_quest.php?location=$id_location"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 250px;">$location_name</p></a>
+	<a href="section_quest.php?section=$id_section"><p title="Секция" class="icon_list">&#xe815;</p><p style="width: 250px;">$section_name</p></a>
+	<a href="section_quest.php?location=$id_location"><p title="Локация" class="icon_list">&#xe814;</p><p style="width: 250px;">$location_name</p></a>
 	<p title="Стоимость" class="icon_list">&#xf158;</p><p>$sale</p>
-	<p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time </p><p>мин.</p>
-	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance </p><p>км.</p>
+	<p title="Время прохождения" class="icon_list">&#xe812;</p><p>$time </p><p>мин.</p>
+	<p title="Расстояние" class="icon_list">&#xe818;</p><p>$distance </p><p>км.</p>
 	
 	<a href="quest_tour.php?id_quest=$id_quests"><input class='button_action' type="button" name="quest_info" value="Подробнее"></a>
 	<input class='button_action quest_del_deferred' id_quest='$id_quests' onclick="" type="button" name="quest_info" value="Убрать из отложенных">
@@ -242,12 +243,12 @@ quest_purchases3;
 	<div class="right_info" >
     <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication_passi</p>
 	<a href="quest_tour.php?id_quest=$id_quests_passi"><h1>$quests_name_passi</h1></a>
-	<p title="Количество заданий квеста" class="icon_list">&#xe801;</p><p>$task_count</p>	
-	<a href="section_quest.php?section=$id_section_passi"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 250px;">$section_name_purchases</p></a>
-	<a href="section_quest.php?location=$id_location_passi"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 250px;">$location_name_purchases</p></a>
+	<p title="Количество заданий квеста" class="icon_list">&#xf24d;</p><p>$task_count</p>	
+	<a href="section_quest.php?section=$id_section_passi"><p title="Секция" class="icon_list">&#xe815;</p><p style="width: 250px;">$section_name_purchases</p></a>
+	<a href="section_quest.php?location=$id_location_passi"><p title="Локация" class="icon_list">&#xe814;</p><p style="width: 250px;">$location_name_purchases</p></a>
 		
-	<p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time_passi </p><p>мин.</p>
-	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance_passi </p><p>км.</p>
+	<p title="Время прохождения" class="icon_list">&#xe812;</p><p>$time_passi </p><p>мин.</p>
+	<p title="Расстояние" class="icon_list">&#xe818;</p><p>$distance_passi </p><p>км.</p>
 	
 	<a href="quest_tour.php?id_quest=$id_quests_passi"><input class='button_action' type="button" name="quest_info" value="Подробнее"></a>
 	</div>
@@ -316,12 +317,12 @@ quest_purchases3;
 	<div class="right_info" >
     <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication_purchases</p>
 	<a href="quest_tour.php?id_quest=$id_quests_purchases"><h1>$quests_name_purchases</h1></a>
-	<p title="Количество заданий квеста" class="icon_list">&#xe801;</p><p>$task_count</p>	
-	<a href="section_quest.php?section=$id_section_purchases"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 250px;">$section_name_purchases</p></a>
-	<a href="section_quest.php?location=$id_location_purchases"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 250px;">$location_name_purchases</p></a>
+	<p title="Количество заданий квеста" class="icon_list">&#xf24d;</p><p>$task_count</p>	
+	<a href="section_quest.php?section=$id_section_purchases"><p title="Секция" class="icon_list">&#xe815;</p><p style="width: 250px;">$section_name_purchases</p></a>
+	<a href="section_quest.php?location=$id_location_purchases"><p title="Локация" class="icon_list">&#xe814;</p><p style="width: 250px;">$location_name_purchases</p></a>
 		
-	<p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time_purchases </p><p>мин.</p>
-	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance_purchases </p><p>км.</p>
+	<p title="Время прохождения" class="icon_list">&#xe812;</p><p>$time_purchases </p><p>мин.</p>
+	<p title="Расстояние" class="icon_list">&#xe818;</p><p>$distance_purchases </p><p>км.</p>
 	
 	<a href="quest_tour.php?id_quest=$id_quests_purchases"><input class='button_action' type="button" name="quest_info" value="Подробнее"></a>
 	</div>
@@ -336,7 +337,11 @@ quest_purchases2;
 </section>
 
 <?php
-$quest_edit = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_t`='$id_t'");
+if ($role_admin == 1) {
+    $quest_edit = mysqli_query($connect, "SELECT * FROM `quests_altrst`");
+} else {
+    $quest_edit = mysqli_query($connect, "SELECT * FROM `quests_altrst` WHERE `id_t`='$id_t'");
+}
 $quest_edit_count = mysqli_num_rows($quest_edit);
 
 if ($quest_edit_count > 0) {
@@ -382,8 +387,8 @@ if ($quest_edit_count > 0) {
     <p class='hard_level' title="Сложность прохождения" style='background:#F1B24A;'>$complication_edit</p>
 	<a href="quest_tour.php?id_quest=$id_quests_edit"><h1>$quests_name_edit</h1></a>
 	<label>$text_quests_edit</label>
-	<a href="section_quest.php?section=$id_section_edit"><p title="Секция" class="icon_list">&#xe801;</p><p style="width: 80%;">$section_name</p></a>
-	<a href="section_quest.php?location=$id_location_edit"><p title="Локация" class="icon_list">&#xe801;</p><p style="width: 80%;">$location_name</p></a>
+	<a href="section_quest.php?section=$id_section_edit"><p title="Секция" class="icon_list">&#xe815;</p><p style="width: 80%;">$section_name</p></a>
+	<a href="section_quest.php?location=$id_location_edit"><p title="Локация" class="icon_list">&#xe814;</p><p style="width: 80%;">$location_name</p></a>
 section_quest;
         if ($status_edit != 1) {
             print<<<section_quest

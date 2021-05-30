@@ -59,7 +59,7 @@ for ($i = 1; $i <= $section_count; $i++) {
 	<div  class='form section_quest'>
 	<section class="left_info">
 	<img  src='$file'/>
-	<input class='button_check put_aside' id="button_check" id_quest='$id_quests'  type="button" name="quest_user" value="&#xe806;">
+	<input class='button_check put_aside' id="button_check" id_quest='$id_quests'  type="button" name="quest_user" value="&#xe808;">
 	<input style="width: 200px;" class='purchase button_action'  id_quest='$id_quests' type="button" name="quest_info" value="Купить">
 	</section>
 	<div class="right_info">
@@ -67,8 +67,8 @@ for ($i = 1; $i <= $section_count; $i++) {
 	<a href="quest_tour.php?id_quest=$id_quests"><h1>$quests_name</h1></a>
 	<label>$text_quests</label>
 	<p title="Стоимость" class="icon_list">&#xf158;</p><p>$sale</p>
-	<p title="Время прохождения" class="icon_list">&#xe802;</p><p>$time </p><p>мин.</p>
-	<p title="Расстояние" class="icon_list">&#xe801;</p><p>$distance </p><p>км.</p>
+	<p title="Время прохождения" class="icon_list">&#xe812;</p><p>$time </p><p>мин.</p>
+	<p title="Расстояние" class="icon_list">&#xe818;</p><p>$distance </p><p>км.</p>
 	
 	<a href="quest_tour.php?id_quest=$id_quests"><input class='button_action' type="button" name="quest_info" value="Подробнее"></a>
 	</div>

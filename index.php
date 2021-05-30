@@ -105,7 +105,7 @@ file;
                 <h5 id='head_tem'><a href="section_quest.php?section=$id_section">$section_name</a></h5>
                 <hr>
                 <h4 id='name_quest'><a href="quest_tour.php?id_quest=$id_quests">$quests_name</a></h4>
-                <p class="icon">&#xe802;</p><p class='time_s' title="Время прохождения">$time мин.</p>
+                <p class="icon">&#xe812;</p><p class='time_s' title="Время прохождения">$time мин.</p>
                 <p class="class_none" id='histori'>$text_quests</p>
                 <p class="class_none" id='location'><a href="section_quest.php?location=$id_location">$location_name</a></p>
                 <p class="class_none" id='sum'>$sale</p>
@@ -136,7 +136,7 @@ print<<<id
         <h5 id='tem_result'><a href="section_quest.php?section=$id_section">Спортивные</a></h5>
         <a href="quest_tour.php?id_quest=$id_quests"><h4 id='name_result'>$quests_name</h4></a>
         <span id='info_result'>$text_quests</span>
-        <p class="icon" style="width: 5%;">&#xe801;</p><span style='width: 95%;' id='location_result'><a href="section_quest.php?location=$id_location">$location_name</a></span>
+        <p class="icon" style="width: 5%;">&#xe80c;</p><span style='width: 95%;' id='location_result'><a href="section_quest.php?location=$id_location">$location_name</a></span>
         <p class="icon" style="width: 5%;">&#xf158;</p><p id='sum_result' style="width: 95%;">$sale</p>
         
 id;
@@ -210,13 +210,22 @@ section;
     <img class='left_gif' src="img/gif_log2.jpg" style="float: right;">
     <h3>Как принять участие в квест-туре?</h3>
     <ul class='li_quest'>
-        <p class="icon_list">&#xe803;</p><li>Для этого потребуется телефон и стабильное интернет соединение.</li>
-        <p class="icon_list">&#xf2c1;</p><li>Зарегистрируйтесь, чтобы иметь доступ к квестам и их прогрессу.</li>
-        <p class="icon_list">&#xe804;</p><li>Подберите квест и проведите оплату черз онлайн-платежи (в базе квестов присутсвуют так же и <a href="#">БЕСПЛАТНЫЕ</a>), <a href="#inf_reg">авторам квестов</a> перечисляются проценты от их продажи.<br><br></li>
-        <p class="icon_list">&#xe801;</p><li>Перейдите на заданную точку в первом задании.</li>
-        <p class="icon_list">&#xf278;</p><li>Перед вами стоит задача, условия который вы должны выполнить.<br>Это может быть распознование лиц или текста на фотографии, ключевая фраза произнесенная вами вслух, переход на ключевую гео. локацию и др..<br><br></li>
-        <p class="icon_list">&#xe805;</p><li>Вы можете воспользоваться подсказкой или открыть ответ, если задача квеста была неясна.</li>
-        <p class="icon_list">&#xf27b;</p><li>Проходите снова и оставляйте свое мнение в отзывах и рейтинге квеста.</li>
+        <p class="icon_list">&#xe80b;</p>
+        <li>Для этого потребуется телефон и стабильное интернет соединение.</li>
+        <p class="icon_list">&#xf2c1;</p>
+        <li>Зарегистрируйтесь, чтобы иметь доступ к квестам и их прогрессу.</li>
+        <p class="icon_list">&#xe80d;</p>
+        <li>Подберите квест и проведите оплату черз онлайн-платежи (в базе квестов присутсвуют так же и <a href="#">БЕСПЛАТНЫЕ</a>),
+            <a href="#inf_reg">авторам квестов</a> перечисляются проценты от их продажи.<br><br></li>
+        <p class="icon_list">&#xe80c;</p>
+        <li>Перейдите на заданную точку в первом задании.</li>
+        <p class="icon_list">&#xf278;</p>
+        <li>Перед вами стоит задача, условия который вы должны выполнить.<br>Это может быть распознование лиц или текста
+            на фотографии, ключевая фраза произнесенная вами вслух, переход на ключевую гео. локацию и др..<br><br></li>
+        <p class="icon_list">&#xe811;</p>
+        <li>Вы можете воспользоваться подсказкой или открыть ответ, если задача квеста была неясна.</li>
+        <p class="icon_list">&#xf27b;</p>
+        <li>Проходите снова и оставляйте свое мнение в отзывах и рейтинге квеста.</li>
     </ul>
 </div>
 
@@ -224,8 +233,10 @@ section;
 <div class="block_reg">
     <p>Зарегистрироваться и начать квест-тур</p>
     <form id='spped_reg'>
-        <input type="text" required name="email" class="input_mail" placeholder="email@email.com" pattern="\S+@[a-z]+.[a-z]+">
-        <input type="password" required name="password" class="input_mail" placeholder="password" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+        <input type="text" required name="email" class="input_mail" placeholder="email@email.com"
+               pattern="\S+@[a-z]+.[a-z]+">
+        <input type="password" required name="password" class="input_mail" placeholder="password"
+               pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
         <label style="display: none;" class="container">Для предоставления услуг сервиса подтверждаю согласие с условиями <a href='' >пользовательского соглашения</a>
             <input type="checkbox" checked="checked" name='sogl' value="Yes">
             <span class="checkmark"></span></label>
@@ -256,7 +267,7 @@ section;
 feed;
         }
         ?>
-        </div>
+    </div>
 </div>
 
 <!--Второй блок с инфо о прохождении квеста-->
@@ -265,13 +276,21 @@ feed;
     <img class='left_gif' src="img/gif_log.jpg" title="0xe80b - код индикатора запуска">
     <h3>Как зарегистрировать собственный квест-тур?</h3>
     <ul class='li_quest'>
-        <p class="icon_list">&#xf2c1;</p><li>Зарегистрируйтесь, чтобы иметь доступ к квестам и результатам модерации ваших запросов.</li>
-        <p class="icon_list">&#xe808;</p><li>В личном кабинете перейдите на вкладку "регистрация квест-тура".</li>
-        <p class="icon_list">&#xf0cb;</p><li>Следуйте инструкциям в форме для добавления заданий.</li>
-        <p class="icon_list">&#xf277;</p><li>Выбирайте разнообразные типы задач, чтобы пользователю было интересно взаимодействовать с квестом.</li>
-        <p class="icon_list">&#xf0e0;</p><li>Смело отправляйте свои идеи на проверку администратору и после редактирования/подверждения возможно именно твой квест-тур появиться в топе.<br><br></li>
-        <p class="icon_list">&#xf295;</p><li>Проценты от продажи квеста идут напрямую в аккаунт автора.</li>
-        <p class="icon_list">&#xe807;</p><li>Подробнее о процессе и нюансах можно почитать в <a href="">пользовательском соглашении</a>.</li>
+        <p class="icon_list">&#xf2c1;</p>
+        <li>Зарегистрируйтесь, чтобы иметь доступ к квестам и результатам модерации ваших запросов.</li>
+        <p class="icon_list">&#xe80e;</p>
+        <li>В личном кабинете перейдите на вкладку "регистрация квест-тура".</li>
+        <p class="icon_list">&#xf0cb;</p>
+        <li>Следуйте инструкциям в форме для добавления заданий.</li>
+        <p class="icon_list">&#xf277;</p>
+        <li>Выбирайте разнообразные типы задач, чтобы пользователю было интересно взаимодействовать с квестом.</li>
+        <p class="icon_list">&#xf0e0;</p>
+        <li>Смело отправляйте свои идеи на проверку администратору и после редактирования/подверждения возможно именно
+            твой квест-тур появиться в топе.<br><br></li>
+        <p class="icon_list">&#xf295;</p>
+        <li>Проценты от продажи квеста идут напрямую в аккаунт автора.</li>
+        <p class="icon_list">&#xe810;</p>
+        <li>Подробнее о процессе и нюансах можно почитать в <a href="">пользовательском соглашении</a>.</li>
     </ul>
 
 </section>
@@ -284,9 +303,9 @@ feed;
     </div>
     <div class='foot_block'>
         <h6>Контактные ресурсы</h6>
-        <email><p style='margin: -1px 10px 0 0;' class="icon">&#xe809;</p>Top@gmail.com</email>
+        <email><p style='margin: -1px 10px 0 0;' class="icon">&#xe803;</p>Top@gmail.com</email>
         <a class="icon_list" title='ВК' href="#">&#xf189;</a>
-        <a class="icon_list" title='ИНСТАГРАМ' href="#">&#xf16d;</a>
+        <a class="icon_list" title='ИНСТАГРАМ' href="#">&#xf31e;</a>
 
     </div>
     <div class='foot_block'>
@@ -297,15 +316,12 @@ feed;
     </div>
     <div class='foot_block'>
         <h6>Инструкции по функционалу</h6>
-        <a><p style='margin: -5px 5px 0 0;' class="icon_list">&#xe807;</p>Прохождение квеста</a>
-        <a><p style='margin: -5px 5px 0 0;' class="icon_list">&#xe807;</p>Регистрация квеста</a>
+        <a><p style='margin: -5px 5px 0 0;' class="icon_list">&#xe810;</p>Прохождение квеста</a>
+        <a><p style='margin: -5px 5px 0 0;' class="icon_list">&#xe810;</p>Регистрация квеста</a>
     </div>
     <a href="#top" style='margin-left: 25px; font-size: 75px; color:#F1B24A; border:none;' class="icon">&#xf139;</a>
     <address>Разработчик: <a href="https://www.behance.net/ferenicavv">Бунина Вероника</a></address>
 </footer>
-
-
-
 
 
 </body>

@@ -24,6 +24,10 @@ $technical = $array_section["technical"];
 $id_location = $array_section["id_location"];
 $id_section = $array_section["id_section"];
 
+$user = mysqli_query($connect, "SELECT * FROM `user_tourist` WHERE `id_t`='$id_t'");
+$array = mysqli_fetch_assoc($user);
+$user_name = $array['name_t'];
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -86,22 +90,22 @@ print<<<section_quest
 	<section class="quest_info">
 	<div class="form">
 	<div class="left_info">
-	<p title="Рейтинг" class="icon_list">&#xe801;</p><h6 style="margin-top:0;">$reiting</h6>
-	<p title="Возрастная рекомендация" class="icon_list">&#xe801;</p><h6>$age</h6>
-	<p title="Количество заданий квеста" class="icon_list">&#xe801;</p><h6>$task_count</h6>	
-	<p title="Уровень сложности" class="icon_list">&#xe801;</p><h6>$complication</h6>
-	<a href="section_quest.php?section=$id_section"><p title="Секция" class="icon_list">&#xe801;</p><h6>$section_name</h6></a>
-	<a href="section_quest.php?location=$id_location"><p title="Локация" class="icon_list">&#xe801;</p><h6>$location_name</h6></a>
-	<p title="Время прохождения" class="icon_list">&#xe802;</p><h6>$time</h6>
-	<p title="Расстояние" class="icon_list">&#xe801;</p><h6>$distance км.</h6>
-	<p title="Автор" class="icon_list">&#xe801;</p><h6>$id_t автор</h6>	
+	<p title="Рейтинг" class="icon_list">&#xe802;</p><h6 style="margin-top:0;">$reiting</h6>
+	<p title="Возрастная рекомендация" class="icon_list">&#xe817;</p><h6>$age</h6>
+	<p title="Количество заданий квеста" class="icon_list">&#xf24d;</p><h6>$task_count</h6>	
+	<p title="Уровень сложности" class="icon_list">&#xf140;</p><h6>$complication</h6>
+	<a href="section_quest.php?section=$id_section"><p title="Секция" class="icon_list">&#xe815;</p><h6>$section_name</h6></a>
+	<a href="section_quest.php?location=$id_location"><p title="Локация" class="icon_list">&#xe814;</p><h6>$location_name</h6></a>
+	<p title="Время прохождения" class="icon_list">&#xe812;</p><h6>$time</h6>
+	<p title="Расстояние" class="icon_list">&#xe818;</p><h6>$distance км.</h6>
+	<p title="Автор" class="icon_list">&#xf2bd;</p><h6>$user_name автор</h6>
 	</div>
 	<div class="right_info">
 	<a href="quest_tour.php?id_quest=$id_quests"><h1>$quests_name</h1></a>
 	<label>$text_quests</label>
-	<p title="Оптимальное количество участников" class="icon_list" style="margin-top:0;">&#xe802;</p><h6>$man</h6>
+	<p title="Оптимальное количество участников" class="icon_list" style="margin-top:0;">&#xf118;</p><h6>$man</h6>
 	<p title="Стоимость" class="icon_list">&#xf158;</p><h6>$sale</h6><br>
-	<input class='button_check put_aside' title="Отложить" id="button_check" id_quest='$id_quests'  type="button" name="quest_user" value="&#xe806;">
+	<input class='button_check put_aside' title="Отложить" id="button_check" id_quest='$id_quests'  type="button" name="quest_user" value="&#xe808;">
 	<input class='purchase button_action'  id_quest='$id_quests' type="button" name="quest_info" value="Купить">
 section_quest;
 
@@ -149,21 +153,25 @@ print ('</ul></section>');
 echo($carta);
 ?>
 <div class="pove">
-<div class="form info_quest">
-    <h1>Как начать прохождение?</h1>
-    <ul>
-        <li><p class="icon_list">&#xe803;</p>Для этого потребуется телефон и стабильное интернет соединение.</li>
-        <li><p class="icon_list">&#xf2c1;</p>Зарегистрируйтесь, чтобы иметь доступ к квестам и их прогрессу.</li>
-        <li><p class="icon_list">&#xe804;</p>Нажмите кнопку купить (даже бесплатные квесты) и они появятся в личном
-            кабинете, где можно перейти на прохождение.</li>
-        <li><p class="icon_list">&#xe801;</p>Перейдите на заданную точку в первом задании.</li>
-        <li><p class="icon_list">&#xf278;</p>Перед вами стоит задача, условия который вы должны выполнить.</li>
-        <li><p class="icon_list">&#xe805;</p>Вы можете воспользоваться подсказкой или открыть ответ, если задача квеста
-            была неясна.
-        </li>
-        <li><p class="icon_list">&#xf27b;</p>Проходите снова и оставляйте свое мнение в отзывах и рейтинге квеста.</li>
-    </ul>
-</div>
+    <div class="form info_quest">
+        <h1>Как начать прохождение?</h1>
+        <ul>
+            <li><p class="icon_list">&#xe80b;</p>Для этого потребуется телефон и стабильное интернет соединение.</li>
+            <li><p class="icon_list">&#xf2c1;</p>Зарегистрируйтесь, чтобы иметь доступ к квестам и их прогрессу.</li>
+            <li><p class="icon_list">&#xe80d;</p>Подберите квест и проведите оплату черз онлайн-платежи (в базе квестов
+                присутсвуют так же и <a href="#">БЕСПЛАТНЫЕ</a>), <a href="#inf_reg">авторам квестов</a> перечисляются
+                проценты от их продажи.<br><br></li>
+            <li><p class="icon_list">&#xe80c;</p>Перейдите на заданную точку в первом задании.</li>
+            <li><p class="icon_list">&#xf278;</p>Перед вами стоит задача, условия который вы должны выполнить.<br>Это
+                может быть распознование лиц или текста на фотографии, ключевая фраза произнесенная вами вслух, переход
+                на ключевую гео. локацию и др..<br><br></li>
+            <li><p class="icon_list">&#xe811;</p>Вы можете воспользоваться подсказкой или открыть ответ, если задача
+                квеста была неясна.
+            </li>
+            <li><p class="icon_list">&#xf27b;</p>Проходите снова и оставляйте свое мнение в отзывах и рейтинге квеста.
+            </li>
+        </ul>
+    </div>
 </div>
 <?php
 

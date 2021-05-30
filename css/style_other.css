@@ -29,15 +29,15 @@ width: 3px;
 height: 3px;
 }
 @font-face {
-      font-family: 'fontello';
-      src: url('../font/fontello.eot?79690369');
-      src: url('../font/fontello.eot?79690369#iefix') format('embedded-opentype'),
-           url('../font/fontello.woff?79690369') format('woff'),
-           url('../font/fontello.ttf?79690369') format('truetype'),
-           url('../font/fontello.svg?79690369#fontello') format('svg');
-      font-weight: normal;
-      font-style: normal;
- }
+	font-family: 'fontello';
+	src: url('../font/procent.eot?79690369');
+	src: url('../font/procent.eot?79690369#iefix') format('embedded-opentype'),
+	url('../font/procent.woff?79690369') format('woff'),
+	url('../font/procent.ttf?79690369') format('truetype'),
+	url('../font/procent.svg?79690369#fontello') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 input:-webkit-autofill {
     -webkit-box-shadow:0 0 0 50px #9DC88D inset; /* можно изменить на любой вариант цвета */
     -webkit-text-fill-color: #333;
