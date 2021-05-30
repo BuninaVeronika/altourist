@@ -44,7 +44,7 @@ if (empty($tmppath)) {
 } else {
     $image = new SimpleImage();
     $image->load($tmppath); // исходная картинка
-    $image->scale(99.9);
+    $image->scale(50.9);
     $image->save($file); // сжатая картинка
 
 }

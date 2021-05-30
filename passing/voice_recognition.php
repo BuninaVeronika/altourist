@@ -37,6 +37,7 @@ $id_task = $arrayPass['id_task'];
                 var span_text = document.getElementById("text");
                 span_text.innerHTML = "";
                 span_text.innerHTML = result[0].transcript;
+                span_text.innerHTML = span_text.innerHTML.replace(/\./g, '')
             };
 
             recognition.onend = function () {
@@ -92,11 +93,11 @@ passing;
     print<<<passing
     <label id='text' class="text_task">Ключевая фраза</label>
     <input style="width: 90%;" type="hidden" placeholder="Ответ на вопрос" id="answer_result">
-    <input type="button" class='button_action but' onclick=" startRecognizer()" name="" value="Распознать фразу">
+    <input type="button" class='button_action but' onclick="startRecognizer()" name="" value="Распознать фразу">
     <input type="hidden" id='passing' value="$id_pass">
     <input type="hidden" id='time' value="$time_now">
     <input type="hidden" id='id_quests' value="$id_quests">
-    <input type="button" class='button_action get_result_face' value="Отправить ответ">
+    <input type="button" class='button_action get_result_text' value="Отправить ответ">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>
     <input type="button" class='button_action hint but' value="Показать подсказку">

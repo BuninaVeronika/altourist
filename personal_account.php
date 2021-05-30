@@ -221,7 +221,9 @@ section_quest;
 
                     $passing_user = mysqli_query($connect, "SELECT * FROM `passing` WHERE `id_t`='$id_t' AND `id_quests`='$id_quests_passi'");
                     $passing_count_user = mysqli_num_rows($passing_user);
-                    $count_proc = round(100 / $passing_count * $passing_count_user) . '%';
+                    $passing_quest = mysqli_query($connect, "SELECT * FROM `task` WHERE  `id_quests`='$id_quests_passi'");
+                    $passing_count_quest = mysqli_num_rows($passing_quest);
+                    $count_proc = round((100 / $passing_count_quest) * $passing_count_user) . '%';
                     print<<<quest_purchases
 
     <div  class='form section_quest'>
