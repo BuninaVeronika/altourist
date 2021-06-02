@@ -297,8 +297,11 @@ quest_purchases2;
                 $passing_count_user = mysqli_num_rows($passing_user);
                 $passing_quest = mysqli_query($connect, "SELECT * FROM `task` WHERE  `id_quests`='$id_quests_purchases'");
                 $passing_count_quest = mysqli_num_rows($passing_quest);
-                $count_proc = round((100 / $passing_count_quest) * $passing_count_user) . '%';
-
+                if ($passing_count_quest != 0) {
+                    $count_proc = round((100 / $passing_count_quest) * $passing_count_user) . '%';
+                } else {
+                    $count_proc = '0%';
+                }
                 print<<<quest_purchases
 
     <div  class='form section_quest'>
