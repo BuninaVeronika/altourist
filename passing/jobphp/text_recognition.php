@@ -14,7 +14,7 @@ foreach ($answer_arr as $ar) {
         $result = "true";
         break;
     } else {
-        $result = 'Ответ неправильный, попробуйте снова.';
+        $result = 'Ответ неправильный, попробуйте снова.' . $ar;
     }
 }
 echo $result;

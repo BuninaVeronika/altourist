@@ -37,13 +37,14 @@ $id_task = $arrayPass['id_task'];
                 var span_text = document.getElementById("text");
                 span_text.innerHTML = "";
                 span_text.innerHTML = result[0].transcript;
-                span_text.innerHTML = span_text.innerHTML.replace(/\./g, '')
+                span_text.innerHTML = span_text.innerHTML.replace(/\./g, '');
+                $('#text').val(span_text.innerHTML);
             };
 
             recognition.onend = function () {
                 console.log('Распознавание завершилось.');
                 var test = document.getElementById('outputData').innerText;
-                $('#text').val(test);
+                var test = document.getElementById('text').innerText;
                 $('#answer_result').val(test);
             };
 

@@ -401,7 +401,7 @@ function new_form() {
             + '<input type="text" name="time" class="text_width" placeholder="Время прохождения в минутах" pattern="[0-9]{1,3}">'
             + '<label>Каждое задание необходимо сохранять отдельно</label>'
             + '<input style="display:none;" type="text" name="id_quest_value" value="' + id_quest_value + '">'
-            + '<input style="display:none;" type="text" name="id_task" value="1">'
+            + '<input style="display:none;" type="text" name="id_task" value="8">'
             + '<input style="display:none;" type="text" value="0" placeholder="Значение для редактирования">'
             + '<input type="button"  onclick="save_task(' + int_number + ');" value="Сохранить задание" class="button_action">';
 
