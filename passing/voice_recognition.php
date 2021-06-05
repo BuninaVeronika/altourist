@@ -39,13 +39,11 @@ $id_task = $arrayPass['id_task'];
                 span_text.innerHTML = result[0].transcript;
                 span_text.innerHTML = span_text.innerHTML.replace(/\./g, '');
                 $('#text').val(span_text.innerHTML);
+                $('#answer_result').val(span_text.innerHTML);
             };
 
             recognition.onend = function () {
                 console.log('Распознавание завершилось.');
-                var test = document.getElementById('outputData').innerText;
-                var test = document.getElementById('text').innerText;
-                $('#answer_result').val(test);
             };
 
             recognition.start();
