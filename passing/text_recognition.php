@@ -113,13 +113,13 @@ passing;
 	 <input type="hidden" id='passing' value="$id_pass">
      <input type="hidden" id='time' value="$time_now">
      <input type="hidden" id='id_quests' value="$id_quests">
-    <input style="margin-left: 25%;" type="button" class='button_action get_result_text' value="Отправить ответ">
+    <input  type="button" class='button_action get_result_text' value="Отправить ответ">
     <hr style="width: 100%; float: left; background: #4D774E; height: 1px; border: none;">
     <p class="text_task" style="display: none;" id="hint">$hint</p>
-    <input style="margin-left: 25%;" type="button" class='button_action hint but' value="Показать подсказку">
+    <input  type="button" class='button_action hint but' value="Показать подсказку">
     <p></p>
     <p class="text_task" style="display: none;" id="answer">$answer</p>
-    <input style="margin-left: 25%; display: none;" type="button" class='button_action answer but' value="Показать ответ">
+    <input  display: none;" type="button" class='button_action answer but' value="Показать ответ">
 </div>
 passing;
 

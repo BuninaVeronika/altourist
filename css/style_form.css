@@ -489,12 +489,14 @@ a {
 }
 
 #feedback input[type="button"] {
-    min-width: 150px;
+    min-width: 400px;
+    margin: 20px;
+    margin-left: 25%;
     width: 26%;
 }
 
 #feedback input[type="text"] {
-    width: 50%;
+    width: 70%;
     font-size: 15px;
     color: #ffffff;
     text-align: left;
@@ -507,7 +509,7 @@ a {
 }
 
 .feed p {
-    margin: 1px;
+    margin: 5px;
     font-family: 'head_normal';
 }
 
@@ -550,6 +552,7 @@ a {
 
 .form .right_info .button_action {
     margin: 5px;
+    font-size: 18px;
 }
 
 .right_info p {
@@ -628,6 +631,12 @@ a {
 }
 
 @media (max-width: 1000px) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
     header {
         height: 120px;
     }
@@ -649,13 +658,20 @@ a {
 
     }
 
+    .form {
+        width: 75%;
+        margin: 10px 10%;
+    }
+
     .form label, p, h3 {
+        width: 50%;
+        margin: 10px 25%;
         font-size: 28px;
     }
 
     .form input[type="button"] {
-        width: 80%;
-        margin-left: 6%;
+        width: 50%;
+        margin: 10px 25%;
 
     }
 
@@ -676,7 +692,7 @@ a {
     }
 
     .nav_right {
-        margin-top: -5%;
+
     }
 
     #reg {
@@ -704,6 +720,15 @@ a {
         margin-top: 5%;
         margin-left: 10%;
         margin-bottom: 26%;
+    }
+
+    .section_quest .left_info input[type="button"] {
+        font-size: 23px;
+        margin-top: 50%;
+    }
+
+    .section_quest .right_info input[type="button"] {
+        font-size: 23px;
     }
 
     .form input[type="text"], input[type="password"] {

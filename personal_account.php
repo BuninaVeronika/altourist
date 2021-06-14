@@ -5,6 +5,20 @@ if (empty($_GET['qsection'])) {
 }
 global $connect;
 ?>
+<style>
+    body {
+        overflow-x: hidden;
+    }
+
+    header {
+        margin-right: -25px;
+    }
+
+    footer {
+        margin-right: -25px;
+        width: 100%;
+    }
+</style>
 <div class='form'>
     <h1>Личный кабинет</h1>
     <?php
@@ -311,7 +325,7 @@ quest_purchases2;
 quest_purchases;
                 if ($email_confirmation == 1) {
                     print<<<quest_purchases3
-<input style='width: 280px;' class='passing_quest_tour button_action'  id_quest='$id_quests_purchases' type='button' name='quest_info' value='Начать прохождение'>
+<input style='width: 280px; margin:10px;' class='passing_quest_tour button_action'  id_quest='$id_quests_purchases' type='button' name='quest_info' value='Начать прохождение'>
 <p style='z-index: 15;position: relative; float:left; width: 100%;'>Пройден на $count_proc</p>
 quest_purchases3;
                 }
