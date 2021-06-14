@@ -12,8 +12,8 @@ if (!navigator.geolocation) {
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
 
-            $('.latitude').val(lat.toFixed(6));
-            $('.longitude').val(lng.toFixed(6));
+            $('.latitude').val(lat.toFixed(15));
+            $('.longitude').val(lng.toFixed(9));
 
         });
     });

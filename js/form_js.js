@@ -512,8 +512,8 @@ function geo_teg(e) {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
 
-        document.forms[e].elements[length - 8].value = lat;
-        document.forms[e].elements[length - 7].value = lng;
+        document.forms[e].elements[length - 8].value = lat.toFixed(15);
+        document.forms[e].elements[length - 7].value = lng.toFixed(9);
 
     });
 }
